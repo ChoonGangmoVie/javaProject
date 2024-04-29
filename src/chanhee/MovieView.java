@@ -1,15 +1,13 @@
 package chanhee;
 
-import util.SimpleInput;
-
 import static util.SimpleInput.*;
 
 public class MovieView {
 
-    private UserRepository ur;
+    private UserView ur;
 
     public MovieView() {
-        this.ur = new UserRepository();
+        this.ur = new UserView();
     }
 
     // 회원가입
@@ -95,6 +93,29 @@ public class MovieView {
 
     // 메인페이지 3번 메뉴: 매점
     private void store() {
+//        System.out.println("### 매점입니다 ###");
+//
+//        while (true) {
+////            userInfoScreen();
+//            String menuNum = input("- 메뉴 번호 : ");
+//
+//            switch (menuNum) {
+//                case "1":
+//                    myPage();
+//                    break;
+//                case "2":
+//                    userInfoChange();
+//                    break;
+//                case "3":
+//                    purchaseInfo();
+//                    break;
+//                case "4":
+//                    ur.deleteUser();
+//                    break;
+//                default:
+//                    System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
+//            }
+//        }
     }
 
 
@@ -126,7 +147,7 @@ public class MovieView {
                     break;
                 case "4":
                     ur.deleteUser();
-                    return;
+                    makeNewUser();
                 default:
                     System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
             }
