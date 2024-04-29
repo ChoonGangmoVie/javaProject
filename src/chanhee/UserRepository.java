@@ -4,8 +4,12 @@ import static util.SimpleInput.input;
 
 public class UserRepository {
 
-    private static MovieUser createUser;
-    private static MovieView mv = new MovieView();
+    private MovieUser createUser;
+    private MovieView mv;
+
+    public UserRepository() {
+        this.mv = new MovieView();
+    }
 
     // 저장소에 가입한 회원 저장
     public void saveUser(MovieUser user) {
