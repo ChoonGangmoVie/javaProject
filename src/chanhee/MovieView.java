@@ -187,4 +187,3 @@ public class MovieView {
 
 
 } // end class
-
