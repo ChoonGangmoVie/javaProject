@@ -48,12 +48,13 @@ public class MovieView {
 
     // 회원정보 메뉴를 출력하는 기능
     public void showMainScreen() {
-        System.out.println("\n# 1. 마이페이지");
-        System.out.println("# 2. 정보 수정");
-        System.out.println("# 3. 구매 내역 확인");
+        System.out.println("\n# 1. 영화 예매");
+        System.out.println("# 2. 영화 예매 확인 및 취소");
+        System.out.println("# 3. 매점");
+        System.out.println("# 4. 회원 정보");
     }
 
-    // 코드의 흐름을 캡슐화
+    // 메인 페이지
     public void movie() {
         makeNewUser();
 
@@ -63,15 +64,18 @@ public class MovieView {
 
             switch (menuNum) {
                 case "1":
-                    myPage();
+                    ticketingMovie();
                     break;
                 case "2":
-                    changeInfo();
+                    ticketingCheck();
                     break;
                 case "3":
-                    checkPurchase();
+                    store();
                     break;
                 case "4":
+                    userInfo();
+                    break;
+                case "5":
                     System.out.println("# 프로그램을 종료?");
                     return;
                 default:
@@ -81,24 +85,72 @@ public class MovieView {
     }
 
 
-    // 1번 메뉴 : 마이페이지
+    // 메인페이지 1번 메뉴: 영화 예매
+    private void ticketingMovie() {
+    }
+
+    // 메인페이지 2번 메뉴: 영화 예매 확인 및 취소
+    private void ticketingCheck() {
+    }
+
+    // 메인페이지 3번 메뉴: 매점
+    private void store() {
+    }
+
+
+    // 메인페이지 4번 메뉴: 회원정보 출력화면
+    public void userInfoScreen() {
+        System.out.println("\n# 1. 나의 정보");
+        System.out.println("# 2. 정보 수정");
+        System.out.println("# 3. 나의 구매 내역");
+        System.out.println("# 4. 회원 탈퇴");
+    }
+
+    // 메인페이지 4번 메뉴 : 회원 정보
+    private void userInfo() {
+        System.out.println("### 회원 정보 페이지입니다. ###");
+
+        while (true) {
+            userInfoScreen();
+            String menuNum = input("- 메뉴 번호 : ");
+
+            switch (menuNum) {
+                case "1":
+                    myPage();
+                    break;
+                case "2":
+                    userInfoChange();
+                    break;
+                case "3":
+                    purchaseInfo();
+                    break;
+                case "4":
+                    System.out.println(" 탈퇴 ");
+                    return;
+                default:
+                    System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
+            }
+        }
+    }
+
+
+    // 메인페이지 4번 메뉴 :회원정보 - 1. 나의 정보
     private void myPage() {
-        System.out.println("\n# 나의 정보");
+        System.out.println("\n### 나의 정보 ###");
         ur.user();
     }
 
-    // 회원정보수정 메뉴를 출력하는 기능
+    // 메인페이지 4번 메뉴: 회원정보 - 2. 정보 수정 출력 화면
     public void showChangeInfoScreen() {
-        System.out.println("\n# 1. 아이디 수정");
+        System.out.println("# 1. 아이디 수정");
         System.out.println("# 2. 비밀번호 수정");
         System.out.println("# 3. 이름 수정");
         System.out.println("# 4. 나이 수정");
         System.out.println("# 5. 성별 수정");
         System.out.println("# 6. 수정 종료");
     }
-
-    // 2번 메뉴 : 정보 수정
-    private void changeInfo() {
+    // 메인페이지 4번 메뉴 : 회원 정보 - 2. 정보수정
+    private void userInfoChange() {
         System.out.println("### 정보 수정 ###");
 
         while (true) {
@@ -129,8 +181,10 @@ public class MovieView {
         }
     }
 
-    private void checkPurchase() {
+    // 메인페이지 4번 메뉴: 회원정보 - 3. 구매 내역
+    private void purchaseInfo() {
     }
+
 
 } // end class
 
