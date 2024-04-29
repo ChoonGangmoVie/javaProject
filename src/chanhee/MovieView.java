@@ -1,19 +1,20 @@
 package chanhee;
 
-import util.SimpleInput;
+import songjihoon.ticketingCheck;
 
-import static util.SimpleInput.*;
+import static util.SimpleInput.input;
 
 public class MovieView {
 
     private UserRepository ur;
+    private ticketingCheck tc = new ticketingCheck();
 
     public MovieView() {
         this.ur = new UserRepository();
     }
 
     // 회원가입
-    public void makeNewUser() {
+    public MovieUser makeNewUser() {
 
         System.out.println("======================= 영화예매 =======================");
         System.out.println("### 회원 가입 ###");
@@ -33,7 +34,9 @@ public class MovieView {
 
         // 입력된 데이터 저장
         ur.saveUser(new MovieUser(id, pw, name, age, gender));
+        return null;
     }
+
 
     // 성별을 정확히 입력할때가지 무한히 입력받고
     // 정확히 입력하면 해당 성별 문자를 리턴
@@ -56,7 +59,7 @@ public class MovieView {
 
     // 메인 페이지
     public void movie() {
-        makeNewUser();
+        MovieUser user = makeNewUser();
 
         while (true) {
             showMainScreen();
@@ -67,7 +70,7 @@ public class MovieView {
                     ticketingMovie();
                     break;
                 case "2":
-                    ticketingCheck();
+                    ticketingCheck(user);
                     break;
                 case "3":
                     store();
@@ -90,7 +93,8 @@ public class MovieView {
     }
 
     // 메인페이지 2번 메뉴: 영화 예매 확인 및 취소
-    private void ticketingCheck() {
+    private void ticketingCheck(MovieUser user) {
+        boolean flag = tc.checkPassword(user);
     }
 
     // 메인페이지 3번 메뉴: 매점

@@ -4,10 +4,10 @@ import util.SimpleInput;
 
 public class UserRepository {
 
-    private static MovieUser createUser;
+    public static MovieUser createUser;
 
     // 저장소에 가입한 회원 저장
-    public void saveUser(MovieUser user) {
+    public static void saveUser(MovieUser user) {
         createUser = user;
     }
 
