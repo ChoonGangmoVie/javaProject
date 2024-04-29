@@ -2,18 +2,18 @@ package chanhee;
 
 public class MovieUser {
 
+    private String id; // 회원이 사용할 아이디
+    private String password; // 회원이 사용할 비밀번호
     private String name; // 회원의 이름
     private int age; // 회원의 나이
     private Gender gender; // 회원의 성별
-    private String id; // 회원이 사용할 아이디
-    private String password; // 회원이 사용할 비밀번호
 
-    public MovieUser(String name, int age, Gender gender, String id, String password) {
+    public MovieUser(String id, String password, String name, int age, Gender gender) {
+        this.id = id;
+        this.password = password;
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.id = id;
-        this.password = password;
     }
 
     public String getName() {
