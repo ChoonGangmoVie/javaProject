@@ -5,9 +5,11 @@ import static util.SimpleInput.*;
 public class MovieView {
 
     private UserView ur;
+    private StoreView sr;
 
     public MovieView() {
         this.ur = new UserView();
+        this.sr = new StoreView();
     }
 
     // 회원가입
@@ -50,6 +52,7 @@ public class MovieView {
         System.out.println("# 2. 영화 예매 확인 및 취소");
         System.out.println("# 3. 매점");
         System.out.println("# 4. 회원 정보");
+        System.out.println("# 5. 예매 프로그램 종료");
     }
 
     // 메인 페이지
@@ -74,7 +77,7 @@ public class MovieView {
                     userInfo();
                     break;
                 case "5":
-                    System.out.println("# 프로그램을 종료?");
+                    System.out.println("# 프로그램을 종료합니다.");
                     return;
                 default:
                     System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
@@ -93,29 +96,27 @@ public class MovieView {
 
     // 메인페이지 3번 메뉴: 매점
     private void store() {
-//        System.out.println("### 매점입니다 ###");
-//
-//        while (true) {
-////            userInfoScreen();
-//            String menuNum = input("- 메뉴 번호 : ");
-//
-//            switch (menuNum) {
-//                case "1":
-//                    myPage();
-//                    break;
-//                case "2":
-//                    userInfoChange();
-//                    break;
-//                case "3":
-//                    purchaseInfo();
-//                    break;
-//                case "4":
-//                    ur.deleteUser();
-//                    break;
-//                default:
-//                    System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
-//            }
-//        }
+        System.out.println("\n### 매점 페이지입니다. ###");
+        sr.showStoreScreen();
+        String menuNum = input("- 메뉴 번호 : ");
+
+        switch (menuNum) {
+            case "1":
+                sr.popcorn();
+                break;
+            case "2":
+                sr.drinks();
+                break;
+            case "3":
+                sr.snack();
+                break;
+            case "4":
+                System.out.println("# 매점 이용을 종료합니다.");
+                return;
+            default:
+                System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
+        }
+
     }
 
 
@@ -154,7 +155,6 @@ public class MovieView {
         }
     }
 
-
     // 메인페이지 4번 메뉴 :회원정보 - 1. 나의 정보
     private void myPage() {
         System.out.println("\n### 나의 정보 ###");
@@ -167,8 +167,7 @@ public class MovieView {
         System.out.println("# 2. 비밀번호 수정");
         System.out.println("# 3. 이름 수정");
         System.out.println("# 4. 나이 수정");
-        System.out.println("# 5. 성별 수정");
-        System.out.println("# 6. 수정 종료");
+        System.out.println("# 5. 수정 종료");
     }
     // 메인페이지 4번 메뉴 : 회원 정보 - 2. 정보수정
     private void userInfoChange() {
@@ -192,8 +191,6 @@ public class MovieView {
                     ur.changeAge();
                     break;
                 case "5":
-                    break;
-                case "6":
                     System.out.println("# 정보 수정을 종료합니다.");
                     return;
                 default:
