@@ -23,4 +23,5 @@ public class MovieReserveRepository {
         return movieUser.getAge() < 19; // 아니요? 성인인데요, 성인이면 false, 성인이 아니면 true
     }
 
+
 }
