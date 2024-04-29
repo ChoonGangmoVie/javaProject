@@ -16,7 +16,7 @@ public class MovieView {
     // 회원가입
     public MovieUser makeNewUser() {
 
-        System.out.println("======================= 영화예매 =======================");
+        System.out.println("\n======================= 영화예매 =======================");
         System.out.println("### 회원 가입 ###");
         String id = input("# 사용할 아이디: ");
         String pw = input("# 사용할 비밀번호: ");
@@ -129,7 +129,7 @@ public class MovieView {
                     purchaseInfo();
                     break;
                 case "4":
-                    System.out.println(" 탈퇴 ");
+                    ur.deleteUser();
                     return;
                 default:
                     System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
@@ -191,4 +191,3 @@ public class MovieView {
 
 
 } // end class
-
