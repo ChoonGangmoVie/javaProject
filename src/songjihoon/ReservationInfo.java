@@ -1,10 +1,10 @@
 package songjihoon;
 
 public class ReservationInfo {
-    public static String userName;
-    public String userId;
-    public String userPassword;
-    public String movieTitle;
+    private static String userName;
+    private String userId;
+    private String userPassword;
+    private String movieTitle;
 
 
     public ReservationInfo(String userName, String userId, String userPassword, String movieTitle) {
@@ -13,6 +13,7 @@ public class ReservationInfo {
         this.userPassword = userPassword;
         this.movieTitle = movieTitle;
     }
+    ReservationInfo info = new ReservationInfo("송지훈", "jjang1702", "jjang1234", "범죄도시4");
 
 
 
