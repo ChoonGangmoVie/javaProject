@@ -11,11 +11,11 @@ public class PaymentRepository {
         return Payment.getCardBalance()-Payment.getMoviePrice();
     }
 
-    public static void changeCardNum(String cardNum,String cardNum2,String cardNum3,String cardNum4) {
+    public static String changeCardNum(String cardNum, String cardNum2, String cardNum3, String cardNum4) {
 
         String newCarNum = new String(cardNum + "-" + cardNum2 + "-" +  cardNum3 + "-" +  cardNum4);
         hwang.setCreditCardNum(newCarNum);
+        return newCarNum;
     }
 }
-
 
