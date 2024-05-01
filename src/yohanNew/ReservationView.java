@@ -2,6 +2,8 @@ package yohanNew;
 
 import chanhee.Gender;
 import chanhee.MovieUser;
+import junwon.PaymentRepository;
+import junwon.PaymentView;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,15 +15,16 @@ import static util.SimpleInput.input;
 // 프로그램의 입,출력 처리
 public class ReservationView {
 
+
     private static ReservationRepository repository;
-    private static Movie movie;
-    private static MovieUser movieUser;
+    public static Movie movie;
+    public static MovieUser movieUser;
 
 
     static {
         repository = new ReservationRepository();
-        movie = new Movie("", 0, null, new ArrayList<>()); // 영화 정보 초기화
-        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE);
+        movie = new Movie("", 15000, null, new ArrayList<>()); // 영화 정보 초기화
+        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE,null);
 //        movieUser = new MovieUser(movieUser.getId(), movieUser.getPassword(),movieUser.getName(), movieUser.getAge(), movieUser.getGender());
     }
 
@@ -123,6 +126,9 @@ public class ReservationView {
         System.out.println("\n\n****** 영화 좌석 ******");
         System.out.println("****** 구매하고 싶은 좌석을 입력하세요. ******");
 
+        // 선택 영화 제목 및 시간 보내기
+        PaymentRepository.getMoveNameTime(selectedMovieTitle,selectedTime);
+
         // 구매한 좌석이 seats에 저장
         List<String> seats = movie.getSeats();
 
@@ -164,6 +170,7 @@ public class ReservationView {
             }
         } while (true);
         viewReservationInfo();
+        PaymentView.start();
     }
 
     private static void watchSeatList(String[][] seat) {

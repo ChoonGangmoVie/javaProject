@@ -14,7 +14,7 @@ public class MovieReserve {
 
     // 생성자
     public MovieReserve() {
-        movieUser = new MovieUser("rnfaos77", "1234", "김요한", 15, MALE);
+        movieUser = new MovieUser("rnfaos77", "1234", "김요한", 15, MALE,"1111-2222-3333-4444");
     }
 
 
