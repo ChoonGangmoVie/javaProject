@@ -9,6 +9,9 @@ public class MovieInfo {
     private LocalDate reserveDate; // 날짜
     private List<String> seats; // 좌석 리스트
 
+    public MovieInfo() {
+    }
+
     public MovieInfo(String movieName, LocalDate reserveDate, List<String> seats) {
         this.movieName = movieName;
         this.reserveDate = reserveDate;
@@ -37,5 +40,10 @@ public class MovieInfo {
 
     public void setSeats(List<String> seats) {
         this.seats = seats;
+    }
+
+    // 선택된 좌석들을 좌석리스트에 저장
+    public void addSeat(String seat) {
+        this.seats.add(seat);
     }
 }

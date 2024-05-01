@@ -1,12 +1,16 @@
 package yohan;
 
+import chanhee.MovieUser;
+
+import java.time.LocalDate;
+
 import static util.SimpleInput.input;
 
 // 프로그램의 입출력 처리 담당
 public class MovieReserveView {
 
     private static MovieReserveRepository repository = new MovieReserveRepository();
-    private static MovieReserve movieReserve;
+    private static MovieReserve movieReserve = new MovieReserve();
 
 
     // 전역 변수
@@ -35,14 +39,18 @@ public class MovieReserveView {
 
         movieList();
         String menuNum = input(">> ");
+        String movieName = "";
         switch (menuNum) {
             case "1":
+                movieName = "범죄도시4";
             case "2":
+
             case "3":
+
             case "4":
             case "5":
                 weatherChoice(menuNum);
-                repository.addMovie(menuNum); // 영화 movieReservationList에 추가
+//                repository.addMovie(menuNum); // 영화 movieReservationList에 추가
                 break;
             case "6":
                 System.out.println("# 1. 영화예매");
@@ -53,6 +61,12 @@ public class MovieReserveView {
                 reservationStart();
                 break;
         }
+
+        MovieInfo movieReservationList = new MovieInfo();
+        movieReservationList.setMovieName(movieName);
+
+        movieReserve.setMovieReservationList(movieReservationList);
+
     }
 
 
@@ -181,6 +195,7 @@ public class MovieReserveView {
         String seatNumber = null;
         while (true) {
             seatNumber = input("\n좌석을 입력하세요: ");
+            repository.addNewSeat(seatNumber); // 좌석 리스트에 저장
             // 구매 완료한 좌석 X로 변경
             for (int i = 0; i < seat.length; i++) {
                 for (int j = 0; j < seat[i].length; j++) {
@@ -195,45 +210,42 @@ public class MovieReserveView {
 
     // 성인 영화 좌석 ( + 나이 검증)
     private static void adultSeatList() {
-        if (repository.isNotAdult()) {
-            System.out.println("이 영화는 19세 이상만 시청할 수 있습니다.");
-            System.exit(0);
-        } else {
-            // 5 x 10 영화관 좌석 생성
-            String[][] seat = new String[5][10];
-            String[] eng = {"A", "B", "C", "D", "E"};
+
+        // 5 x 10 영화관 좌석 생성
+        String[][] seat = new String[5][10];
+        String[] eng = {"A", "B", "C", "D", "E"};
+        for (int i = 0; i < seat.length; i++) {
+            for (int j = 0; j < seat[i].length; j++) {
+                seat[i][j] = eng[i] + (j + 1);
+            }
+        }
+
+        // 영화관 좌석 번호 확인
+        watchSeatList(seat);
+
+        String seatNumber = null;
+        while (true) {
+            seatNumber = input("\n좌석을 입력하세요: ");
+            // 구매 완료한 좌석 X로 변경
             for (int i = 0; i < seat.length; i++) {
                 for (int j = 0; j < seat[i].length; j++) {
-                    seat[i][j] = eng[i] + (j + 1);
-                }
-            }
-
-            // 영화관 좌석 번호 확인
-            watchSeatList(seat);
-
-            String seatNumber = null;
-            while (true) {
-                seatNumber = input("\n좌석을 입력하세요: ");
-                // 구매 완료한 좌석 X로 변경
-                for (int i = 0; i < seat.length; i++) {
-                    for (int j = 0; j < seat[i].length; j++) {
-                        if (seat[i][j].equals(seatNumber)) {
-                            seat[i][j] = " X";
-                        }
+                    if (seat[i][j].equals(seatNumber)) {
+                        seat[i][j] = " X";
                     }
                 }
-                watchSeatList(seat);
             }
-        }
-    }
+            watchSeatList(seat);
 
-    private static void watchSeatList(String[][] seat) {
-        for (String[] strings : seat) {
-            for (int j = 0; j < strings.length; j++) {
-                System.out.print(strings[j] + " ");
-            }
-            System.out.println();
-        }
     }
+}
+
+private static void watchSeatList(String[][] seat) {
+    for (String[] strings : seat) {
+        for (int j = 0; j < strings.length; j++) {
+            System.out.print(strings[j] + " ");
+        }
+        System.out.println();
+    }
+}
 }
 
