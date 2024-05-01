@@ -166,7 +166,7 @@ public class PaymentView {
         }
     }
 
-    private static void registeredCard() {
+    public static void registeredCard() {
         System.out.println("# 등록할 카드 번호를 입력하세요");
         cardLengthCheck();
         findCardInfo();
