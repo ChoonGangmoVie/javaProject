@@ -301,7 +301,7 @@ public class PaymentView {
         System.out.printf("# 영화제목: 범죄도시\n");
         System.out.printf("# 상영시간: 2024년 4월 29일 15시30분\n");
         System.out.printf("# 영화금액: %s원\n",hwang.getMoviePrice());
-        System.out.println("\n==============================");
+        System.out.println("\n=============================1111=");
     }
 
 }
