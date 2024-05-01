@@ -22,6 +22,7 @@ public class MovieView {
         String id = input("# 사용할 아이디: ");
         String pw = input("# 사용할 비밀번호: ");
         String name = input("# 회원의 이름: ");
+        String creditCard="";
         int age = 0;
         while (true) {
             try {
@@ -34,7 +35,7 @@ public class MovieView {
         Gender gender = inputGender();
 
         // 입력된 데이터 저장
-        MovieUser newUser = new MovieUser(id, pw, name, age, gender);
+        MovieUser newUser = new MovieUser(id, pw, name, age, gender,creditCard);
         ur.saveUser(newUser);
     }
 
@@ -50,7 +51,7 @@ public class MovieView {
     }
 
     // 회원정보 메뉴를 출력하는 기능
-    public void showMainScreen() {
+    public static void showMainScreen() {
         System.out.println("\n# 1. 영화 예매");
         System.out.println("# 2. 영화 예매 확인 및 취소");
         System.out.println("# 3. 매점");

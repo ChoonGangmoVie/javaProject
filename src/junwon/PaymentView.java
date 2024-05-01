@@ -1,7 +1,7 @@
 package junwon;
 
-import static junwon.Payment.*;
-import static junwon.Payment.getMoviePrice;
+import chanhee.MovieView;
+import yohanNew.ReservationView;
 import static junwon.PaymentRepository.*;
 import static util.SimpleInput.*;
 
@@ -39,7 +39,7 @@ public class PaymentView {
     }
 
     private static void findCardInfo() {
-        if(hwang.getCreditCardNum()==null){
+        if(ReservationView.movieUser.getCreditCard() ==null){
             System.out.println("==============================");
             System.out.println("# 등록된 카드가 없습니다. 카드를 등록하시겠습니까?");
             String choiceRegisterCard = input(">>" + "(Y/N)");
@@ -58,8 +58,8 @@ public class PaymentView {
         else{
             System.out.println("==============================");
             System.out.println("# 등록카드정보 #");
-            System.out.printf("# 카드소유주: %s\n",hwang.getUser());
-            System.out.printf("# 카드번호: %s\n",hwang.getCreditCardNum());
+            System.out.printf("# 카드소유주: %s\n",ReservationView.movieUser.getName());
+            System.out.printf("# 카드번호: %s\n",ReservationView.movieUser.getCreditCard());
         }
     }
 
@@ -90,34 +90,26 @@ public class PaymentView {
     public static void cardCheck() {
 
         // 카드가 등록된 상태
-        if (hwang.getCreditCardNum()!=null) {
+        if (ReservationView.movieUser.getCreditCard()!=null) {
             // 등록 카드 결제 여부 확인
             System.out.println("등록 된 카드로 결제하시겠습니까?");
-            System.out.printf("등록 된 카드번호: " + hwang.getCreditCardNum() + "\n>>" + "(Y/N)");
+            System.out.printf("등록 된 카드번호: " + ReservationView.movieUser.getCreditCard());
 
-            System.out.println("==============================");
+            String payAnswer="";
             while (true) {
-                String payAnswer = input(">>" + "(Y/N)");
+                payAnswer= input("\n>>" + "(Y/N)");
                 if(payAnswer.equals("Y") || payAnswer.equals("y")){
                     // 등록된 카드로 결제를 원할때
-                    if(getCardBalance() >= getMoviePrice()){
-                        // 카드에 잔액/한도가 있을때
-                        System.out.printf("결제 전 카드 잔액(한도): %s\n",getCardBalance());
-                        System.out.printf("결제 될 카드 금액: %s\n",getMoviePrice());
-                        System.out.printf("결제 후 카드 잔액(한도): %s\n", paymentBalance());
-                        System.out.println("등록 된 카드로 결제가 완료되었습니다.");
-                        System.out.println("==============================");
 
-                    }else{
-                        // 카드에 잔액/한도가 부족할때
-                        System.out.printf("현재 카드 잔액(한도): %s\n", getCardBalance());
-                        System.out.printf("결제 될 카드 금액: %s\n",getMoviePrice());
-                        System.out.println("카드 잔액(한도)가 부족합니다.");
-                        System.out.println("이전 메뉴로 돌아갑니다.");
-                        System.out.println("==============================");
-                        choiceCardOrCash();
-                    }
-
+                    System.out.println("등록 된 카드로 결제가 완료되었습니다.");
+                    System.out.printf("결제 될 카드 금액: %s\n",ReservationView.movie.getFee());
+                    System.out.println("==============================");
+                    System.out.printf("# 영화제목: %s\n",Payment.getMovieName());
+                    System.out.printf("# 상영시간: %s\n",Payment.getMovieTime());
+                    System.out.printf("# 영화금액: %s원\n",ReservationView.movie.getFee());
+                    System.out.println("==============================");
+                    MovieView.showMainScreen();
+                    break;
                 }else if(payAnswer.equals("N") || payAnswer.equals("n")) {
 
                     // 등록된 카드로 결제를 원하지 않을때
@@ -159,7 +151,8 @@ public class PaymentView {
                     System.out.println("카드 등록 메뉴로 이동합니다.");
                     System.out.println("==============================");
                     registeredCard();
-
+                    cardCheck();
+                    break;
                 }else if(cardRegisterAnswer.equals("N")||cardRegisterAnswer.equals("n")){
 
                     // 카드 등록을 원하지 않을때
@@ -181,7 +174,7 @@ public class PaymentView {
 
     private static String changeCardInfo() {
 
-        if(hwang.getCreditCardNum()==null){
+        if(ReservationView.movieUser.getCreditCard()==null){
             System.out.println("==============================");
             System.out.println("등록된 카드가 없습니다. 카드 등록 페이지로 이동합니다.");
             System.out.println("==============================");
@@ -193,8 +186,8 @@ public class PaymentView {
             System.out.println("==============================");
             System.out.println(" 카드 정보가 변경 되었습니다");
             System.out.println("==============================");
-            System.out.printf("# 카드 소유주: %s\n",hwang.getUser());
-            System.out.printf("# 변경된 카드 정보: %s\n", hwang.getCreditCardNum());
+            System.out.printf("# 카드 소유주: %s\n", ReservationView.movieUser.getName());
+            System.out.printf("# 변경된 카드 정보: %s\n", ReservationView.movieUser.getCreditCard());
             System.out.println("==============================");
         }
         return null;
@@ -269,7 +262,6 @@ public class PaymentView {
             while (true) {
                 try {
                     CardNum4Int = Integer.parseInt(input("@네번째 4자리@\n반드시 숫자 4자리를 입력하세요>> "));
-                    System.out.println("==============================");
                     Card4Num = String.valueOf(CardNum4Int);
                     if (Card4Num.length() == 4) {
                         break;
@@ -298,10 +290,10 @@ public class PaymentView {
         int num = (int)Math.round(random * (bank.length-1));
         System.out.printf("@"+bank[num]+"은행@");
         System.out.printf(" (계상계좌로 30분이내로 입금 부탁 드립니다).\n>>%s-%s-%s-%s\n",account,account2,account3,account4);
-        System.out.printf("# 영화제목: 범죄도시\n");
-        System.out.printf("# 상영시간: 2024년 4월 29일 15시30분\n");
-        System.out.printf("# 영화금액: %s원\n",hwang.getMoviePrice());
-        System.out.println("\n=============================1111=");
+        System.out.printf("# 영화제목: %s\n",Payment.getMovieName());
+        System.out.printf("# 상영시간: %s\n",Payment.getMovieTime());
+        System.out.printf("# 영화금액: %s원\n",ReservationView.movie.getFee());
+        System.out.println("\n==============================");
     }
 
 }
