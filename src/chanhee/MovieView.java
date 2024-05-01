@@ -4,10 +4,14 @@ import static util.SimpleInput.*;
 
 public class MovieView {
 
-    private UserView ur;
+    private UserView uv;
+    private StoreView sv;
+    private UserRepository ur;
 
     public MovieView() {
-        this.ur = new UserView();
+        this.uv = new UserView();
+        this.sv = new StoreView();
+        this.ur = new UserRepository();
     }
 
     // 회원가입
@@ -30,7 +34,8 @@ public class MovieView {
         Gender gender = inputGender();
 
         // 입력된 데이터 저장
-        ur.saveUser(new MovieUser(id, pw, name, age, gender));
+        MovieUser newUser = new MovieUser(id, pw, name, age, gender);
+        ur.saveUser(newUser);
     }
 
     // 성별을 정확히 입력할때가지 무한히 입력받고
@@ -50,6 +55,7 @@ public class MovieView {
         System.out.println("# 2. 영화 예매 확인 및 취소");
         System.out.println("# 3. 매점");
         System.out.println("# 4. 회원 정보");
+        System.out.println("# 5. 예매 프로그램 종료");
     }
 
     // 메인 페이지
@@ -74,7 +80,7 @@ public class MovieView {
                     userInfo();
                     break;
                 case "5":
-                    System.out.println("# 프로그램을 종료?");
+                    System.out.println("# 프로그램을 종료합니다.");
                     return;
                 default:
                     System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
@@ -93,29 +99,21 @@ public class MovieView {
 
     // 메인페이지 3번 메뉴: 매점
     private void store() {
-//        System.out.println("### 매점입니다 ###");
-//
-//        while (true) {
-////            userInfoScreen();
-//            String menuNum = input("- 메뉴 번호 : ");
-//
-//            switch (menuNum) {
-//                case "1":
-//                    myPage();
-//                    break;
-//                case "2":
-//                    userInfoChange();
-//                    break;
-//                case "3":
-//                    purchaseInfo();
-//                    break;
-//                case "4":
-//                    ur.deleteUser();
-//                    break;
-//                default:
-//                    System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
-//            }
-//        }
+        System.out.println("\n### 매점 페이지입니다. ###");
+        sv.showStoreScreen();
+        String menuNum = input("- 메뉴 번호 : ");
+
+        switch (menuNum) {
+            case "1":
+                sv.store();
+                break;
+            case "2":
+                System.out.println("# 매점 이용을 종료합니다.");
+                return;
+            default:
+                System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
+        }
+
     }
 
 
@@ -146,7 +144,7 @@ public class MovieView {
                     purchaseInfo();
                     break;
                 case "4":
-                    ur.deleteUser();
+                    uv.deleteUser();
                     makeNewUser();
                 default:
                     System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
@@ -154,11 +152,10 @@ public class MovieView {
         }
     }
 
-
     // 메인페이지 4번 메뉴 :회원정보 - 1. 나의 정보
     private void myPage() {
         System.out.println("\n### 나의 정보 ###");
-        ur.user();
+        uv.user();
     }
 
     // 메인페이지 4번 메뉴: 회원정보 - 2. 정보 수정 출력 화면
@@ -167,8 +164,7 @@ public class MovieView {
         System.out.println("# 2. 비밀번호 수정");
         System.out.println("# 3. 이름 수정");
         System.out.println("# 4. 나이 수정");
-        System.out.println("# 5. 성별 수정");
-        System.out.println("# 6. 수정 종료");
+        System.out.println("# 5. 수정 종료");
     }
     // 메인페이지 4번 메뉴 : 회원 정보 - 2. 정보수정
     private void userInfoChange() {
@@ -180,20 +176,18 @@ public class MovieView {
 
             switch (menuNum) {
                 case "1":
-                    ur.changeId();
+                    uv.changeId();
                     break;
                 case "2":
-                    ur.changePassword();
+                    uv.changePassword();
                     break;
                 case "3":
-                    ur.changeName();
+                    uv.changeName();
                     break;
                 case "4":
-                    ur.changeAge();
+                    uv.changeAge();
                     break;
                 case "5":
-                    break;
-                case "6":
                     System.out.println("# 정보 수정을 종료합니다.");
                     return;
                 default:
