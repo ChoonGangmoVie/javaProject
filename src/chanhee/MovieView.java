@@ -1,12 +1,11 @@
+
 package chanhee;
 
+import junwon.Payment;
+import junwon.PaymentRepository;
 import junwon.PaymentView;
-import yohanNew.ReservationInfo;
-import yohanNew.ReservationRepository;
-import yohanNew.ReservationView;
 
-import java.util.List;
-
+import static junwon.PaymentRepository.getCardNum;
 import static util.SimpleInput.*;
 
 import static yohanNew.ReservationView.movieReservation;
@@ -16,25 +15,14 @@ public class MovieView {
     private UserView uv;
     private StoreView sv;
     private UserRepository ur;
-    private StoreRepository storeRepository;
-    private ReservationRepository reservationRepository;
-    private ReservationView reservationView;
+//    private Ticketing tt;
 
     public MovieView() {
         this.uv = new UserView();
         this.sv = new StoreView();
         this.ur = new UserRepository();
-        this.storeRepository = new StoreRepository();
-        this.reservationRepository = new ReservationRepository();
-        this.reservationView = new ReservationView();
-
+//        this.tt = new Tickting();
     }
-
-    public static void StoreInfo(List<Store> storeList) {
-        System.out.println(storeList);
-    }
-
-
 
     // 회원가입
     public void makeNewUser() {
@@ -56,16 +44,17 @@ public class MovieView {
         }
         Gender gender = inputGender();
         // 카드 등록여부 확인
-        String creditCard="";
+        String creditCard = "";
         System.out.println("# 결제할 카드를 등록하시겠습니까?\n (Y/N)");
         while (true) {
 
             String inputCard = input("#>> ");
-
-            if (inputCard.equalsIgnoreCase("Y")|| inputCard.equalsIgnoreCase("y")) {
+            if (inputCard.equalsIgnoreCase("Y") || inputCard.equalsIgnoreCase("y")) {
                 PaymentView.registeredCard();
+                creditCard = PaymentRepository.getCardNum();
                 break;
-            } else if (inputCard.equalsIgnoreCase("N")||inputCard.equalsIgnoreCase("n")) {
+            } else if (inputCard.equalsIgnoreCase("N") || inputCard.equalsIgnoreCase("n")) {
+                creditCard = null;
                 break;
             } else {
                 System.out.println("Y 또는 N을 입력해주세요");
@@ -73,9 +62,10 @@ public class MovieView {
         }
 
         // 입력된 데이터 저장
-        MovieUser newUser = new MovieUser(id, pw, name, age, gender,creditCard);
+        MovieUser newUser = new MovieUser(id, pw, name, age, gender, creditCard);
         ur.saveUser(newUser);
     }
+
 
     // 성별을 정확히 입력할때가지 무한히 입력받고
     // 정확히 입력하면 해당 성별 문자를 리턴
@@ -260,7 +250,7 @@ public class MovieView {
 
     // 나의 영화 예매 내역에서 어떤 영화를 예매했는지 출력
     private void myMovieInfo() {
-        ReservationView.viewReservationInfo();
+//        ReservationView.viewReservationInfo();
     }
 
     // 나의 매점 구매내역에서 무엇을 샀는지 출력
