@@ -1,7 +1,5 @@
 package chanhee;
 
-import static util.SimpleInput.input;
-
 public class UserView {
 
     private UserRepository userRepository = new UserRepository();
@@ -14,27 +12,27 @@ public class UserView {
 
     // 회원 아이디 수정
     public void changeId() {
-        userRepository.changeID();
+        userRepository.changeUserId();
     }
 
     // 회원 비밀번호 수정
     public void changePassword() {
-        userRepository.changePW();
+        userRepository.changeUserPw();
     }
 
     // 회원 이름 수정
     public void changeName() {
-       userRepository.changeNAME();
+       userRepository.changeUserName();
     }
 
     // 회원 나이 수정
     public void changeAge() {
-       userRepository.changeAGE();
+       userRepository.changeUserAge();
     }
 
     // 메인페이지 4번 메뉴: 회원정보 - 4. 회원 탈퇴
     public void deleteUser() {
-       userRepository.deleteUSER();
+       userRepository.deleteUserInfo();
     }
 
     // 메인페이지 4번 메뉴: 회원정보 - 3. 나의 구매 내역

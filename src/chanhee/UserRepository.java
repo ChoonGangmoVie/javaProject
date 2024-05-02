@@ -49,7 +49,7 @@ public class UserRepository {
         System.out.println("# 회원의 성별: " + currentMovieUser.getGender());
     }
 
-    public void changeID() {
+    public void changeUserId() {
         System.out.printf("# %s님의 아이디를 변경합니다.\n", currentMovieUser.getName());
 
         // 아이디 수정
@@ -60,7 +60,7 @@ public class UserRepository {
         System.out.println("# 아이디 변경이 완료되었습니다.");
     }
 
-    public void changePW() {
+    public void changeUserPw() {
         System.out.printf("# %s님의 비밀번호를 변경합니다.\n", currentMovieUser.getName());
 
         // 비밀번호 수정
@@ -71,18 +71,18 @@ public class UserRepository {
         System.out.println("# 비밀번호 변경이 완료되었습니다.");
     }
 
-    public void changeNAME() {
-        System.out.printf("# %s님의 비밀번호를 변경합니다.\n", currentMovieUser.getName());
+    public void changeUserName() {
+        System.out.printf("# %s님의 이름을 변경합니다.\n", currentMovieUser.getName());
 
         // 이름 수정
-        String newName = input("# 새 비밀번호: ");
+        String newName = input("# 새 이름: ");
         // 회원정보 실제로 수정
         currentMovieUser.setName(newName);
 
-        System.out.println("# 비밀번호 변경이 완료되었습니다.");
+        System.out.println("# 이름 변경이 완료되었습니다.");
     }
 
-    public void changeAGE() {
+    public void changeUserAge() {
         System.out.printf("# %s님의 나이를 변경합니다.\n", currentMovieUser.getName());
 
         // 나이 수정
@@ -90,15 +90,15 @@ public class UserRepository {
         // 회원정보 실제로 수정
         currentMovieUser.setAge(Integer.parseInt(newAge));
 
-        System.out.println("# 회원의 나이 변경이 완료되었습니다.");
+        System.out.println("# 나이 변경이 완료되었습니다.");
     }
 
-    public void deleteUSER() {
+    public void deleteUserInfo() {
         // 비밀번호 검증 받고 입력비번 일치하면 회원정보 삭제하기
         System.out.println("\n### 회원 탈퇴 페이지입니다. ###");
         System.out.println("탈퇴를 위해 기존의 비밀번호를 입력해주세요.");
         // 비밀번호 검증
-        String pw = currentMovieUser.getPassword();
+        String pw = "";
 
         while (true) {
             if (pw != null) {
@@ -106,7 +106,7 @@ public class UserRepository {
                 String inputPw = input("# 기존 비밀번호 입력: ");
                 if (inputPw.equals(currentMovieUser.getPassword())) {
                     System.out.printf("# %s님의 회원정보가 삭제되었습니다. 회원가입 화면으로 돌아갑니다.", currentMovieUser.getName());
-//                    user = null;
+                    currentMovieUser = null;
                     break;
                 } else {
                     System.out.println("\n# 비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
