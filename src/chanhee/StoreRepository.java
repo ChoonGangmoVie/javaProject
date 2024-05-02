@@ -13,23 +13,23 @@ public class StoreRepository {
     static {
         storeList = new ArrayList<>();
         userStore = new ArrayList<>();
-        storeList.add(new PopCorn(1,"고소팝콘(M)", 6000));
-        storeList.add(new PopCorn(2,"고소팝콘(L)", 6500));
-        storeList.add(new PopCorn(3,"카라멜팝콘(M)", 6000));
-        storeList.add(new PopCorn(4,"카라멜팝콘(L)", 6500));
-        storeList.add(new PopCorn(5,"더블치즈팝콘(M)", 6000));
-        storeList.add(new PopCorn(6,"더블치즈팝콘(L)", 6500));
-        storeList.add(new PopCorn(7,"버질어니언팝콘(M)", 6000));
-        storeList.add(new PopCorn(8,"버질어니언팝콘(L)", 6500));
-        storeList.add(new Drinks(9,"탄산음료(M)", 3000));
-        storeList.add(new Drinks(10,"탄산음료(L)", 3500));
-        storeList.add(new Drinks(11,"아메리카노(ICE)", 4500));
-        storeList.add(new Drinks(12,"아메리카노(HOT)", 4000));
-        storeList.add(new Drinks(13,"청포도에이드", 5500));
-        storeList.add(new Drinks(14,"자몽에이드", 5500));
-        storeList.add(new Snacks(15,"칠리치즈나쵸", 4900));
-        storeList.add(new Snacks(16,"플레인 핫도그", 4500));
-        storeList.add(new Snacks(17,"칠리치즈 핫도그", 5000));
+        storeList.add(new Store(1,"고소팝콘(M)", 6000));
+        storeList.add(new Store(2,"고소팝콘(L)", 6500));
+        storeList.add(new Store(3,"카라멜팝콘(M)", 6000));
+        storeList.add(new Store(4,"카라멜팝콘(L)", 6500));
+        storeList.add(new Store(5,"더블치즈팝콘(M)", 6000));
+        storeList.add(new Store(6,"더블치즈팝콘(L)", 6500));
+        storeList.add(new Store(7,"버질어니언팝콘(M)", 6000));
+        storeList.add(new Store(8,"버질어니언팝콘(L)", 6500));
+        storeList.add(new Store(9,"탄산음료(M)", 3000));
+        storeList.add(new Store(10,"탄산음료(L)", 3500));
+        storeList.add(new Store(11,"아메리카노(ICE)", 4500));
+        storeList.add(new Store(12,"아메리카노(HOT)", 4000));
+        storeList.add(new Store(13,"청포도에이드", 5500));
+        storeList.add(new Store(14,"자몽에이드", 5500));
+        storeList.add(new Store(15,"칠리치즈나쵸", 4900));
+        storeList.add(new Store(16,"플레인 핫도그", 4500));
+        storeList.add(new Store(17,"칠리치즈 핫도그", 5000));
     }
 
     public static List<Store> getStoreList() {
