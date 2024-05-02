@@ -1,8 +1,10 @@
 package chanhee;
 
 import junwon.Payment;
+import junwon.PaymentRepository;
 import junwon.PaymentView;
 
+import static junwon.PaymentRepository.getCardNum;
 import static util.SimpleInput.*;
 
 import static yohanNew.ReservationView.movieReservation;
@@ -41,16 +43,17 @@ public class MovieView {
         }
         Gender gender = inputGender();
         // 카드 등록여부 확인
-        String creditCard="";
+        String creditCard = "";
         System.out.println("# 결제할 카드를 등록하시겠습니까?\n (Y/N)");
         while (true) {
 
             String inputCard = input("#>> ");
-
-            if (inputCard.equalsIgnoreCase("Y")|| inputCard.equalsIgnoreCase("y")) {
+            if (inputCard.equalsIgnoreCase("Y") || inputCard.equalsIgnoreCase("y")) {
                 PaymentView.registeredCard();
+                creditCard = PaymentRepository.getCardNum();
                 break;
-            } else if (inputCard.equalsIgnoreCase("N")||inputCard.equalsIgnoreCase("n")) {
+            } else if (inputCard.equalsIgnoreCase("N") || inputCard.equalsIgnoreCase("n")) {
+                creditCard = null;
                 break;
             } else {
                 System.out.println("Y 또는 N을 입력해주세요");
@@ -58,7 +61,7 @@ public class MovieView {
         }
 
         // 입력된 데이터 저장
-        MovieUser newUser = new MovieUser(id, pw, name, age, gender,creditCard);
+        MovieUser newUser = new MovieUser(id, pw, name, age, gender, creditCard);
         ur.saveUser(newUser);
     }
 

@@ -25,8 +25,8 @@ public class ReservationView {
         repository = new ReservationRepository();
         movie = new Movie("", 0, null, new ArrayList<>()); // 영화 정보 초기화
         userRepository = new UserRepository();
-        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE, null);
-//        movieUser = userRepository.getCurrentMovieUser();
+//        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE, null);
+        movieUser = userRepository.getCurrentMovieUser();
     }
 
     // 프로그램 실행
@@ -312,6 +312,7 @@ public class ReservationView {
                     System.out.println(r.getMovie().getSeats());
                     System.out.println(r.getMovie().getTime());
                     System.out.println(r.getMovie().getMovieName());
+
                 });
     }
 
