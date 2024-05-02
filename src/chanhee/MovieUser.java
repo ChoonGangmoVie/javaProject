@@ -8,12 +8,26 @@ public class MovieUser {
     private int age; // 회원의 나이
     private Gender gender; // 회원의 성별
 
-    public MovieUser(String id, String password, String name, int age, Gender gender) {
+    private static String creditCard; // 신용카드
+
+    // 신용 카드 Get/Set
+    public String getCreditCard() {
+        return creditCard;
+    }
+
+    public static void setCreditCard(String creditCard) {
+        MovieUser.creditCard = creditCard;
+    }
+
+    public MovieUser(String id, String password, String name, int age, Gender gender, String creditCard) {
         this.id = id;
         this.password = password;
         this.name = name;
         this.age = age;
         this.gender = gender;
+
+        // 신용카드 초기화
+        this.creditCard = creditCard;
     }
 
     public String getName() {
