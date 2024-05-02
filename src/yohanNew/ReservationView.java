@@ -3,6 +3,9 @@ package yohanNew;
 import chanhee.Gender;
 import chanhee.MovieUser;
 import chanhee.UserRepository;
+import junwon.PaymentRepository;
+import junwon.PaymentView;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +17,9 @@ import static util.SimpleInput.input;
 // 프로그램의 입,출력 처리
 public class ReservationView {
 
+
     private static ReservationRepository repository;
+
     private static Movie movie;
     private static MovieUser movieUser;
     private static UserRepository userRepository;
@@ -25,6 +30,17 @@ public class ReservationView {
         userRepository = new UserRepository();
 //        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE);
         movieUser = userRepository.getCurrentMovieUser();
+
+    public static Movie movie;
+    public static MovieUser movieUser;
+
+
+    static {
+        repository = new ReservationRepository();
+        movie = new Movie("", 15000, null, new ArrayList<>()); // 영화 정보 초기화
+        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE,null);
+//        movieUser = new MovieUser(movieUser.getId(), movieUser.getPassword(),movieUser.getName(), movieUser.getAge(), movieUser.getGender());
+
     }
 
     // 프로그램 실행
@@ -198,6 +214,9 @@ public class ReservationView {
         System.out.println("****** \uD83D\uDC47구매하고 싶은 좌석을 입력하세요.\uD83D\uDC47 ******");
         System.out.println("\u001B[0m");
 
+        // 선택 영화 제목 및 시간 보내기
+        PaymentRepository.getMoveNameTime(selectedMovieTitle,selectedTime);
+
         // 구매한 좌석이 seats에 저장
         List<String> seats = movie.getSeats();
 
@@ -279,7 +298,12 @@ public class ReservationView {
                 break;
             }
         } while (true);
+
         viewReservationInfo(); // 추가 구매를 하지 않는 경우에만 호출
+
+        viewReservationInfo();
+        PaymentView.start();
+
     }
 
 

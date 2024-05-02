@@ -1,5 +1,8 @@
 package chanhee;
 
+import junwon.Payment;
+import junwon.PaymentView;
+
 import static util.SimpleInput.*;
 import static yohanNew.ReservationView.movieReservation;
 
@@ -23,6 +26,7 @@ public class MovieView {
         String id = input("# 사용할 아이디: ");
         String pw = input("# 사용할 비밀번호: ");
         String name = input("# 회원의 이름: ");
+
         int age = 0;
         while (true) {
             try {
@@ -33,9 +37,25 @@ public class MovieView {
             }
         }
         Gender gender = inputGender();
+        // 카드 등록여부 확인
+        String creditCard="";
+        System.out.println("# 결제할 카드를 등록하시겠습니까?\n (Y/N)");
+        while (true) {
+
+            String inputCard = input("#>> ");
+
+            if (inputCard.equalsIgnoreCase("Y")|| inputCard.equalsIgnoreCase("y")) {
+                PaymentView.registeredCard();
+                break;
+            } else if (inputCard.equalsIgnoreCase("N")||inputCard.equalsIgnoreCase("n")) {
+                break;
+            } else {
+                System.out.println("Y 또는 N을 입력해주세요");
+            }
+        }
 
         // 입력된 데이터 저장
-        MovieUser newUser = new MovieUser(id, pw, name, age, gender);
+        MovieUser newUser = new MovieUser(id, pw, name, age, gender,creditCard);
         ur.saveUser(newUser);
     }
 
@@ -51,7 +71,7 @@ public class MovieView {
     }
 
     // 회원정보 메뉴를 출력하는 기능
-    public void showMainScreen() {
+    public static void showMainScreen() {
         System.out.println("\n# 1. 영화 예매");
         System.out.println("# 2. 영화 예매 확인 및 취소");
         System.out.println("# 3. 매점");
