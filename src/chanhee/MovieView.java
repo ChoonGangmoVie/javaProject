@@ -4,6 +4,7 @@ package chanhee;
 import junwon.Payment;
 import junwon.PaymentRepository;
 import junwon.PaymentView;
+import yohanNew.ReservationView;
 
 import static junwon.PaymentRepository.getCardNum;
 import static util.SimpleInput.*;
@@ -250,7 +251,7 @@ public class MovieView {
 
     // 나의 영화 예매 내역에서 어떤 영화를 예매했는지 출력
     private void myMovieInfo() {
-//        ReservationView.viewReservationInfo();
+        ReservationView.viewReservationInfo();
     }
 
     // 나의 매점 구매내역에서 무엇을 샀는지 출력
