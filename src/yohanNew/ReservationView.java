@@ -1,46 +1,32 @@
 package yohanNew;
 
+
 import chanhee.Gender;
 import chanhee.MovieUser;
 import chanhee.UserRepository;
+import junwon.Payment;
 import junwon.PaymentRepository;
 import junwon.PaymentView;
 
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static util.SimpleInput.input;
 
 // 프로그램의 입,출력 처리
 public class ReservationView {
 
-
     private static ReservationRepository repository;
-
-    private static Movie movie;
-    private static MovieUser movieUser;
+    public static Movie movie;
+    public static MovieUser movieUser;
     private static UserRepository userRepository;
 
     static {
         repository = new ReservationRepository();
         movie = new Movie("", 0, null, new ArrayList<>()); // 영화 정보 초기화
         userRepository = new UserRepository();
-//        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE);
-        movieUser = userRepository.getCurrentMovieUser();
-
-    public static Movie movie;
-    public static MovieUser movieUser;
-
-
-    static {
-        repository = new ReservationRepository();
-        movie = new Movie("", 15000, null, new ArrayList<>()); // 영화 정보 초기화
-        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE,null);
-//        movieUser = new MovieUser(movieUser.getId(), movieUser.getPassword(),movieUser.getName(), movieUser.getAge(), movieUser.getGender());
-
+        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE, null);
+//        movieUser = userRepository.getCurrentMovieUser();
     }
 
     // 프로그램 실행
@@ -298,12 +284,8 @@ public class ReservationView {
                 break;
             }
         } while (true);
-
         viewReservationInfo(); // 추가 구매를 하지 않는 경우에만 호출
-
-        viewReservationInfo();
         PaymentView.start();
-
     }
 
 
