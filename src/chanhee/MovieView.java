@@ -4,6 +4,7 @@ import junwon.Payment;
 import junwon.PaymentView;
 
 import static util.SimpleInput.*;
+import static yohanNew.ReservationView.movieReservation;
 
 public class MovieView {
 
@@ -88,7 +89,7 @@ public class MovieView {
 
             switch (menuNum) {
                 case "1":
-                    ticketingMovie();
+                    movieReservation();
                     break;
                 case "2":
                     ticketingCheck();
