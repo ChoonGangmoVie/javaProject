@@ -14,6 +14,9 @@ public class UserRepository {
     private static MovieUser currentMovieUser;
 
 
+
+
+
     public MovieUser getUser(String id) {
         return findById(id);
     }
@@ -25,6 +28,9 @@ public class UserRepository {
                 .collect(Collectors.toList())
                 .get(0);
     }
+
+
+
 
     public void saveUser(MovieUser newUser) {
         users.add(newUser);
