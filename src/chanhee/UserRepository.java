@@ -115,4 +115,9 @@ public class UserRepository {
         }
     }
 
+    public void myStoreList() {
+        System.out.printf("\n=========================================\n### %s님의 매점 구매 내역 ###\n"
+                , currentMovieUser.getName());
+    }
+
 }
