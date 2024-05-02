@@ -55,4 +55,5 @@ public class StoreRepository {
     public static void setUserStore(List<Store> userStore) {
         StoreRepository.userStore = userStore;
     }
+
 }

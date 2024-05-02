@@ -1,3 +1,4 @@
+
 package chanhee;
 
 import junwon.Payment;
@@ -65,6 +66,7 @@ public class MovieView {
         ur.saveUser(newUser);
     }
 
+
     // 성별을 정확히 입력할때가지 무한히 입력받고
     // 정확히 입력하면 해당 성별 문자를 리턴
     private Gender inputGender() {
@@ -101,7 +103,7 @@ public class MovieView {
                     ticketingCheck();
                     break;
                 case "3":
-                    store();
+                    storeMenu();
                     break;
                 case "4":
                     userInfo();
@@ -126,7 +128,7 @@ public class MovieView {
     }
 
     // 메인페이지 3번 메뉴: 매점
-    private void store() {
+    public void storeMenu() {
         System.out.println("\n### 매점 페이지입니다. ###");
         sv.showStoreScreen();
         String menuNum = input("- 메뉴 번호 : ");
@@ -246,12 +248,19 @@ public class MovieView {
         }
     }
 
+    // 나의 영화 예매 내역에서 어떤 영화를 예매했는지 출력
     private void myMovieInfo() {
-
+//        ReservationView.viewReservationInfo();
     }
 
+    // 나의 매점 구매내역에서 무엇을 샀는지 출력
     private void myStoreInfo() {
-
+        ur.myStoreList();
+        StoreRepository.getUserStore().forEach(store -> {
+            System.out.print("구매한 상품명: " + store.getName() + " /");
+            System.out.println(" 상품의 가격: " + store.getPrice());
+        });
+        System.out.println("=========================================");
     }
 
 
