@@ -1,14 +1,14 @@
 package yohanNew;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 // 영화의 정보와 금액
 public class Movie {
 
-    private String movieName; // 영화 제목
-    private int fee; // 금액
-    private List<String> time; // 상영시간
+    private static String movieName; // 영화 제목
+    private static int fee; // 금액
+    private static List<String> time; // 상영시간
     private List<String> seats; // 좌석
 
 
@@ -22,7 +22,7 @@ public class Movie {
         this.seats = seats;
     }
 
-    public String getMovieName() {
+    public static String getMovieName() {
         return movieName;
     }
 
@@ -30,7 +30,7 @@ public class Movie {
         this.movieName = movieName;
     }
 
-    public int getFee() {
+    public static int getFee() {
         return fee;
     }
 
@@ -38,7 +38,7 @@ public class Movie {
         this.fee = fee;
     }
 
-    public List<String> getTime() {
+    public static List<String> getTime() {
         return time;
     }
 

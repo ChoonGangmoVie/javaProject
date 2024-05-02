@@ -4,14 +4,14 @@ public class MovieUser {
 
     private String id; // 회원이 사용할 아이디
     private String password; // 회원이 사용할 비밀번호
-    private String name; // 회원의 이름
+    private static String name; // 회원의 이름
     private int age; // 회원의 나이
     private Gender gender; // 회원의 성별
 
     private static String creditCard; // 신용카드
 
     // 신용 카드 Get/Set
-    public String getCreditCard() {
+    public static String getCreditCard() {
         return creditCard;
     }
 
@@ -30,7 +30,7 @@ public class MovieUser {
         this.creditCard = creditCard;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
