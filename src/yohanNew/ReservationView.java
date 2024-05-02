@@ -305,21 +305,23 @@ public class ReservationView {
 
         repository.getReservationInfoList()
                 .forEach(r -> {
-//                    System.out.println(r.getMovieUser());
-//                    System.out.println(r.getMovieUser().getName());
-//                    System.out.println(r.getMovieUser().getAge());
-//                    System.out.println(r.getMovieUser().getId());
-//                    System.out.println(r.getMovieUser().getGender());
-//                    System.out.println(r.getMovieUser().getPassword());
+
+
                     String movieTime = r.getMovie().getTime().toString().replaceAll("[\\[\\]]", "");
                     String movieSeats = r.getMovie().getSeats().toString().replaceAll("[\\[\\]]", "");
                     System.out.printf("%s님이 예매하신 영화는 %s이고, 영화 상영 시간은 %s, 좌석은 %s입니다."
                     , r.getMovieUser().getName(), r.getMovie().getMovieName(), movieTime, movieSeats);
-//                    System.out.println(r.getMovie().getFee());
-//                    System.out.println(r.getMovie().getSeats());
-//                    System.out.println(r.getMovie().getTime());
-//                    System.out.println(r.getMovie().getMovieName());
-//                    System.out.println(r.getMovieUser().getCreditCard());
+
+                    System.out.println(r.getMovieUser().getName());
+                    System.out.println(r.getMovieUser().getAge());
+                    System.out.println(r.getMovieUser().getId());
+                    System.out.println(r.getMovieUser().getGender());
+                    System.out.println(r.getMovieUser().getPassword());
+                    System.out.println(r.getMovie().getFee());
+                    System.out.println(r.getMovie().getSeats());
+                    System.out.println(r.getMovie().getTime());
+                    System.out.println(r.getMovie().getMovieName());
+
                 });
     }
 
