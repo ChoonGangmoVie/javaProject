@@ -4,6 +4,7 @@ import junwon.Payment;
 import junwon.PaymentView;
 
 import static util.SimpleInput.*;
+
 import static yohanNew.ReservationView.movieReservation;
 
 public class MovieView {
@@ -11,11 +12,13 @@ public class MovieView {
     private UserView uv;
     private StoreView sv;
     private UserRepository ur;
+//    private Ticketing tt;
 
     public MovieView() {
         this.uv = new UserView();
         this.sv = new StoreView();
         this.ur = new UserRepository();
+//        this.tt = new Tickting();
     }
 
     // 회원가입
@@ -116,6 +119,7 @@ public class MovieView {
 
     // 메인페이지 2번 메뉴: 영화 예매 확인 및 취소
     private void ticketingCheck() {
+//        tt.menu();
     }
 
     // 메인페이지 3번 메뉴: 매점
@@ -144,6 +148,7 @@ public class MovieView {
         System.out.println("# 2. 정보 수정");
         System.out.println("# 3. 나의 구매 내역");
         System.out.println("# 4. 회원 탈퇴");
+        System.out.println("# 5. 돌아가기");
     }
 
     // 메인페이지 4번 메뉴 : 회원 정보
@@ -167,6 +172,8 @@ public class MovieView {
                 case "4":
                     uv.deleteUser();
                     makeNewUser();
+                case "5":
+                    return;
                 default:
                     System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
             }
@@ -219,6 +226,29 @@ public class MovieView {
 
     // 메인페이지 4번 메뉴: 회원정보 - 3. 구매 내역
     private void purchaseInfo() {
+        uv.showMyBoughtInfo();
+        String menuNum = input("- 메뉴 번호 : ");
+        switch (menuNum) {
+
+            case "1":
+                myMovieInfo();
+                break;
+            case "2":
+                myStoreInfo();
+                break;
+            case "3":
+                return;
+            default:
+                System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
+        }
+    }
+
+    private void myMovieInfo() {
+
+    }
+
+    private void myStoreInfo() {
+
     }
 
 

@@ -37,4 +37,12 @@ public class UserView {
        userRepository.deleteUSER();
     }
 
+    // 메인페이지 4번 메뉴: 회원정보 - 3. 나의 구매 내역
+    public void showMyBoughtInfo() {
+        System.out.println("\n# 1. 나의 영화 예매 내역");
+        System.out.println("# 2. 나의 매점 구매 내역");
+        System.out.println("# 3. 돌아가기");
+    }
+
+
 } // end class
