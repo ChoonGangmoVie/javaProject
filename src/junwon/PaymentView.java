@@ -125,7 +125,6 @@ public class PaymentView {
                             System.out.println("카드 변경 메뉴로 이동합니다.");
                             System.out.println("==============================");
                             changeCardInfo();
-
                         }else if(registerCard.equals("N") || registerCard.equals("n")) {
                             // 이전 메뉴로 이동
                             System.out.println("이전 메뉴로 돌아갑니다.");
