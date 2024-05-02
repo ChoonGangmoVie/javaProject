@@ -285,6 +285,8 @@ public class ReservationView {
             }
         } while (true);
         viewReservationInfo(); // 추가 구매를 하지 않는 경우에만 호출
+
+
         PaymentView.start();
     }
 
@@ -303,6 +305,13 @@ public class ReservationView {
 
         repository.getReservationInfoList()
                 .forEach(r -> {
+
+
+                    String movieTime = r.getMovie().getTime().toString().replaceAll("[\\[\\]]", "");
+                    String movieSeats = r.getMovie().getSeats().toString().replaceAll("[\\[\\]]", "");
+                    System.out.printf("%s님이 예매하신 영화는 %s이고, 영화 상영 시간은 %s, 좌석은 %s입니다."
+                    , r.getMovieUser().getName(), r.getMovie().getMovieName(), movieTime, movieSeats);
+
                     System.out.println(r.getMovieUser().getName());
                     System.out.println(r.getMovieUser().getAge());
                     System.out.println(r.getMovieUser().getId());

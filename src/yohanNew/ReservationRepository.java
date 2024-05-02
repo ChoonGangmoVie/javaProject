@@ -1,21 +1,23 @@
 package yohanNew;
 
 import chanhee.MovieUser;
+import junwon.PaymentRepository;
 
 import java.util.*;
 
 // 영화 예매의 정보 여러개를 관리 (조회, 수정, 삭제, 생성, 탐색, 정렬)
 public class ReservationRepository {
 
-    // 영화 예매정보들을 담을 자료구조
-    // key: 예매한 유저의 이름, value: 영화 정보
-//    private Map<String, Movie> reservationMap = new HashMap<>();
 
     // 영화 예매정보들을 담을 리스트
     private List<ReservationInfo> reservationInfoList = new ArrayList<>();
 
+
+
     public ReservationRepository() {
     }
+
+
 
     public List<ReservationInfo> getReservationInfoList() {
         return reservationInfoList;
