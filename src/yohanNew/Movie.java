@@ -6,9 +6,9 @@ import java.util.List;
 // 영화의 정보와 금액
 public class Movie {
 
-    private static String movieName; // 영화 제목
-    private static int fee; // 금액
-    private static List<String> time; // 상영시간
+    private String movieName; // 영화 제목
+    private int fee; // 금액
+    private List<String> time; // 상영시간
     private List<String> seats; // 좌석
 
 
@@ -22,25 +22,29 @@ public class Movie {
         this.seats = seats;
     }
 
-    public static String getMovieName() {
+    public String getMovieName() {
         return movieName;
+    }
+
+    public int getFee() {
+        return fee;
+    }
+
+    public List<String> getTime() {
+        return time;
     }
 
     public void setMovieName(String movieName) {
         this.movieName = movieName;
     }
 
-    public static int getFee() {
-        return fee;
-    }
+
 
     public void setFee(int fee) {
         this.fee = fee;
     }
 
-    public static List<String> getTime() {
-        return time;
-    }
+
 
     public void setTime(List<String> time) {
         this.time = time;

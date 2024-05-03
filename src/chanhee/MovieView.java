@@ -4,7 +4,12 @@ package chanhee;
 import junwon.Payment;
 import junwon.PaymentRepository;
 import junwon.PaymentView;
+import yohanNew.Movie;
+import yohanNew.ReservationInfo;
+import yohanNew.ReservationRepository;
 import yohanNew.ReservationView;
+
+import java.util.List;
 
 import static junwon.PaymentRepository.getCardNum;
 import static util.SimpleInput.*;
@@ -17,12 +22,14 @@ public class MovieView {
     private StoreView sv;
     private UserRepository ur;
 //    private Ticketing tt;
+    private static ReservationRepository reservationRepository;
+    private ReservationInfo reservationInfo;
 
     public MovieView() {
         this.uv = new UserView();
         this.sv = new StoreView();
         this.ur = new UserRepository();
-//        this.tt = new Tickting();
+        this.reservationInfo = new ReservationInfo();
     }
 
     // 회원가입
@@ -251,7 +258,13 @@ public class MovieView {
 
     // 나의 영화 예매 내역에서 어떤 영화를 예매했는지 출력
     private void myMovieInfo() {
-        ReservationView.viewReservationInfo();
+//        ReservationView.viewReservationInfo();
+        List<ReservationInfo> reservationInfoList = reservationRepository.getReservationInfoList();
+        System.out.println("reservationInfoList = " + reservationInfoList);
+//        Movie movie = reservationInfo.getMovie();
+//        MovieUser movieUser = reservationInfo.getMovieUser();
+//        System.out.println(movie);
+//        System.out.println(movieUser);
     }
 
     // 나의 매점 구매내역에서 무엇을 샀는지 출력

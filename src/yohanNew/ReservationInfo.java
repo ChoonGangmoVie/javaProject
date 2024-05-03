@@ -14,8 +14,14 @@ public class ReservationInfo {
         this.movie = movie;
     }
 
+    public ReservationInfo() {
+    }
+
     public MovieUser getMovieUser() {
         return movieUser;
+    }
+    public void getInfo() {
+
     }
 
     public void setMovieUser(MovieUser movieUser) {

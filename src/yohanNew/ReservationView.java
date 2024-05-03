@@ -45,12 +45,6 @@ public class ReservationView {
         // 1. 영화 선택
         String menuNum = input("\u001B[34m보고 싶은 영화 선택: ");
         System.out.println("\u001B[0m");
-//        System.out.println("\u001B[32m녹색 텍스트입니다.");   // 녹색
-//        System.out.println("\u001B[33m노란색 텍스트입니다."); // 노란색
-//        System.out.println("\u001B[34m파란색 텍스트입니다."); // 파란색
-//        System.out.println("\u001B[35m자주색 텍스트입니다."); // 자주색
-//        System.out.println("\u001B[36m청록색 텍스트입니다."); // 청록색
-//        System.out.println("\u001B[37m회색 텍스트입니다.");   // 회색
 
 
         // 선택한 영화 제목 저장
@@ -203,7 +197,7 @@ public class ReservationView {
         // 선택 영화 제목 및 시간 보내기
         PaymentRepository.getMoveNameTime(selectedMovieTitle,selectedTime);
 
-        // 구매한 좌석이 seats에 저장
+        // 좌석이 저장될 리스트
         List<String> seats = movie.getSeats();
 
         // 5 x 10 좌석 생성
@@ -266,10 +260,11 @@ public class ReservationView {
             // 구매한 좌석을 seats에 저장
             seats.add(seatNumber);
 
-            // 첫번째 구매하는 것만 실행하고 나머지는 추가 구매할 때만 저장하게 하기 위함
+            // 첫번째 구매할 때만 실행하고 종료, 추가 구매에 대한 저장은 while문 안에서 실행
             if (isFirstTime) {
                 repository.addReservationInfo(movieUser, selectedMovieTitle, selectedTime, seats);
                 isFirstTime = false; // 첫 번째 구매 완료 후 플래그 변경
+//                System.out.println("예약 정보가 추가되었습니다: " + repository.getReservationInfoList());
             }
 
             // 추가 구매 여부 확인
