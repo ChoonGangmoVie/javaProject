@@ -88,6 +88,7 @@ public class PaymentView {
                 System.out.println("현금 결제를 선택하셨습니다.");
                 System.out.println("============================");
                 paymentToCash();
+
                 break;
             default:
                 System.out.println("잘못된 메뉴 번호 입니다.");
@@ -112,10 +113,10 @@ public class PaymentView {
 
                     System.out.println("\n등록 된 카드로 결제가 완료되었습니다.");
                     System.out.printf("결제 될 카드 금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
-                    System.out.println("==============================");
-                    System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
-                    System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
-                    System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
+//                    System.out.println("==============================");
+//                    System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
+//                    System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
+//                    System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
                     break;
                 }else if(payAnswer.equals("N") || payAnswer.equals("n")) {
 
@@ -127,7 +128,6 @@ public class PaymentView {
                         if(registerCard.equals("Y") || registerCard.equals("y")){
                             // 카드 변경 메뉴로 이동
                             System.out.println("카드 변경 메뉴로 이동합니다.");
-                            System.out.println("============================");
                             changeCardInfo();
                         }else if(registerCard.equals("N") || registerCard.equals("n")) {
                             // 이전 메뉴로 이동
@@ -187,6 +187,7 @@ public class PaymentView {
             registeredCard();
         }else{
             findCardInfo();
+            System.out.println("============================");
             System.out.println("# 변경할 카드 번호를 입력하세요");
             cardLengthCheck();
             System.out.println("============================");
@@ -195,6 +196,7 @@ public class PaymentView {
             System.out.printf("# 카드 소유주: %s\n", ReservationRepository.getSendMovieUserInfo().getName());
             System.out.printf("# 변경된 카드 정보: %s\n", getCreditCard());
             System.out.println("============================");
+            cardCheck();
         }
         return null;
     }

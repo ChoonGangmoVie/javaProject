@@ -65,8 +65,7 @@ public class MovieView {
         Gender gender = inputGender();
         // 카드 등록여부 확인
         String creditCard = "";
-        System.out.println("============================");
-        System.out.println("# 결제할 카드를 먼저 등록하시겠습니까?\n (Y/N)");
+        System.out.println("# 결제할 카드를 먼저 등록하시겠습니까?");
   while (true) {
 
             String inputCard = input(">>(Y/N) ");

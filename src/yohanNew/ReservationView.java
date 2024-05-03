@@ -302,25 +302,12 @@ public class ReservationView {
     // 예약 정보를 확인코드
     public static void viewReservationInfo() {
 
-        repository.getReservationInfoList()
-                .forEach(r -> {
-
-                    String movieTime = r.getMovie().getTime().toString().replaceAll("[\\[\\]]", "");
-                    String movieSeats = r.getMovie().getSeats().toString().replaceAll("[\\[\\]]", "");
-                    System.out.printf("%s님이 예매하신 영화는 %s이고, 영화 상영 시간은 %s, 좌석은 %s입니다."
-                    , r.getMovieUser().getName(), r.getMovie().getMovieName(), movieTime, movieSeats);
-
-                    System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
-                    System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
-                    System.out.printf("# 영화금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
-
-                    System.out.println("기존 저장 저보를 취소합니다.");
-
-
-
-                });
-        showMainScreen();
-
+        System.out.println("### 현재 예약 정보 ###");
+        System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
+        System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
+        System.out.printf("# 좌석: %s\n",ReservationRepository.getSendMovieInfo().getSeats());
+        System.out.printf("# 영화금액: %s원",ReservationRepository.getSendMovieInfo().getFee());
     }
+
 
 }
