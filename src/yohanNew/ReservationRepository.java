@@ -14,13 +14,21 @@ public class ReservationRepository {
     // 영화 예매정보들을 담을 리스트
     private List<ReservationInfo> reservationInfoList;
 
+    // Movie, MovieUser 보낼때 사용하는 변수
+    private static Movie sendMovieInfo;
+    private static MovieUser sendMovieUserInfo;
 
+    public static Movie getSendMovieInfo() {
+        return sendMovieInfo;
+    }
+
+    public static MovieUser getSendMovieUserInfo() {
+        return sendMovieUserInfo;
+    }
 
     public ReservationRepository() {
         this.reservationInfoList = new ArrayList<>();
     }
-
-
 
     public List<ReservationInfo> getReservationInfoList() {
         return reservationInfoList;
@@ -32,12 +40,14 @@ public class ReservationRepository {
         Movie movie = new Movie(selectedMovieTitle, 15000, Collections.singletonList(selectedTime), seats);
         ReservationInfo reservationInfo = new ReservationInfo(movieUser, movie);
         reservationInfoList.add(reservationInfo);
+
         Movie movie1 = reservationInfo.getMovie();
+        sendMovieInfo = movie1;
         MovieUser movieUser1 = reservationInfo.getMovieUser();
+        sendMovieUserInfo = movieUser1;
 
         System.out.println("예약 정보가 추가되었습니다: " + movie1 + movieUser1);
-//        System.out.println("movie = " + movie);
-//        System.out.println("reservationInfo = " + reservationInfo);
+
     }
 
     public boolean isNotAdult(MovieUser user) {

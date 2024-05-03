@@ -258,13 +258,11 @@ public class MovieView {
 
     // 나의 영화 예매 내역에서 어떤 영화를 예매했는지 출력
     private void myMovieInfo() {
-//        ReservationView.viewReservationInfo();
-        List<ReservationInfo> reservationInfoList = reservationRepository.getReservationInfoList();
-        System.out.println("reservationInfoList = " + reservationInfoList);
-//        Movie movie = reservationInfo.getMovie();
-//        MovieUser movieUser = reservationInfo.getMovieUser();
-//        System.out.println(movie);
-//        System.out.println(movieUser);
+
+        Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
+        System.out.println(sendMovieInfo);
+        MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
+        System.out.println(sendMovieUserInfo);
     }
 
     // 나의 매점 구매내역에서 무엇을 샀는지 출력
