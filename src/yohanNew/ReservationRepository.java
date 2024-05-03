@@ -46,8 +46,12 @@ public class ReservationRepository {
         MovieUser movieUser1 = reservationInfo.getMovieUser();
         sendMovieUserInfo = movieUser1;
 
-        System.out.println("예약 정보가 추가되었습니다: " + movie1 + movieUser1);
-
+        System.out.println("\n### 예약 정보가 추가되었습니다.");
+        System.out.printf("# 예약자명: %s\n" , movieUser1.getName());
+        System.out.printf("# 영화제목: %s\n" , movie.getMovieName());
+        System.out.printf("# 영화가격: %d\n" , movie.getFee());
+        System.out.printf("# 영화시간: %s\n" , movie1.getTime());
+        System.out.printf("# 좌석: %s\n" , movie1.getSeats());
     }
 
     public boolean isNotAdult(MovieUser user) {
