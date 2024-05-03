@@ -2,6 +2,8 @@ package junwon;
 
 import chanhee.MovieView;
 import yohanNew.Movie;
+import yohanNew.ReservationInfo;
+import yohanNew.ReservationRepository;
 
 
 import static chanhee.MovieUser.*;
@@ -12,6 +14,10 @@ public class PaymentView {
 
     //    카드등록 검증 - 안되어있다 - 카드등록 -  영화 결제 진행 (쿠폰 사용 유무) - 영화예매
     //    되어있다 - 영화 결제 진행
+    private static ReservationInfo reservationInfo;
+
+    public PaymentView() {
+    }
 
     public static void start(){
         choiceCardOrCash();
@@ -105,11 +111,11 @@ public class PaymentView {
                     // 등록된 카드로 결제를 원할때
 
                     System.out.println("등록 된 카드로 결제가 완료되었습니다.");
-                    System.out.printf("결제 될 카드 금액: %s\n",Movie.getFee());
+                    System.out.printf("결제 될 카드 금액: %s\n",ReservationRepository.getSendMovieInfo().getFee());
                     System.out.println("==============================");
-                    System.out.printf("# 영화제목: %s\n",Movie.getMovieName());
-                    System.out.printf("# 상영시간: %s\n",Movie.getTime());
-                    System.out.printf("# 영화금액: %s원\n",Movie.getFee());
+                    System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getFee());
+                    System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getFee());
+                    System.out.printf("# 영화금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
                     System.out.println("==============================");
                     MovieView.showMainScreen();
                     break;
@@ -294,9 +300,9 @@ public class PaymentView {
         int num = (int)Math.round(random * (bank.length-1));
         System.out.printf("@"+bank[num]+"은행@");
         System.out.printf(" (계상계좌로 30분이내로 입금 부탁 드립니다).\n>>%s-%s-%s-%s\n",account,account2,account3,account4);
-        System.out.printf("# 영화제목: %s\n", Movie.getMovieName());
-        System.out.printf("# 상영시간: %s\n", Movie.getTime());
-        System.out.printf("# 영화금액: %s원\n", Movie.getFee());
+        System.out.printf("# 영화제목: %s\n", ReservationRepository.getSendMovieInfo().getFee());
+        System.out.printf("# 상영시간: %s\n", ReservationRepository.getSendMovieInfo().getFee());
+        System.out.printf("# 영화금액: %s원\n", ReservationRepository.getSendMovieInfo().getFee());
         System.out.println("\n==============================");
     }
 
