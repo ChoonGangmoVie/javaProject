@@ -1,5 +1,6 @@
 package junwon;
 
+import chanhee.MovieUser;
 import chanhee.MovieView;
 import yohanNew.ReservationInfo;
 import yohanNew.ReservationRepository;
@@ -191,7 +192,7 @@ public class PaymentView {
             System.out.println("============================");
             System.out.println(" 카드 정보가 변경 되었습니다");
             System.out.println("============================");
-            System.out.printf("# 카드 소유주: %s\n", getName());
+            System.out.printf("# 카드 소유주: %s\n", ReservationRepository.getSendMovieUserInfo().getName());
             System.out.printf("# 변경된 카드 정보: %s\n", getCreditCard());
             System.out.println("============================");
         }
