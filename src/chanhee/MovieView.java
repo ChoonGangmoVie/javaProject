@@ -35,7 +35,8 @@ public class MovieView {
     // 회원가입
     public void makeNewUser() {
 
-        System.out.println("\n======================= 영화예매 =======================");
+        System.out.println(" ");
+        System.out.println("============================");
         System.out.println("### 회원 가입 ###");
         String id = input("# 사용할 아이디: ");
         String pw = input("# 사용할 비밀번호: ");
@@ -51,6 +52,7 @@ public class MovieView {
             }
         }
 
+
         int age = 0;
         while (true) {
             try {
@@ -63,8 +65,9 @@ public class MovieView {
         Gender gender = inputGender();
         // 카드 등록여부 확인
         String creditCard = "";
-        System.out.println("# 결제할 카드를 등록하시겠습니까?");
-        while (true) {
+        System.out.println("============================");
+        System.out.println("# 결제할 카드를 먼저 등록하시겠습니까?\n (Y/N)");
+  while (true) {
 
             String inputCard = input(">>(Y/N) ");
             if (inputCard.equalsIgnoreCase("Y") || inputCard.equalsIgnoreCase("y")) {
@@ -99,11 +102,13 @@ public class MovieView {
 
     // 회원정보 메뉴를 출력하는 기능
     public static void showMainScreen() {
-        System.out.println("\n# 1. 영화 예매");
-        System.out.println("# 2. 영화 예매 확인 및 취소");
-        System.out.println("# 3. 매점");
-        System.out.println("# 4. 회원 정보");
-        System.out.println("# 5. 예매 프로그램 종료");
+        System.out.println("============================");
+        System.out.println("1. 영화 예매                 ");
+        System.out.println("2. 영화 예매 확인 및 취소      ");
+        System.out.println("3. 매점                      ");
+        System.out.println("4. 회원 정보                  ");
+        System.out.println("5. 예매 프로그램 종료          ");
+        System.out.println("============================");
     }
 
     // 메인 페이지
@@ -148,6 +153,7 @@ public class MovieView {
 
     // 메인페이지 3번 메뉴: 매점
     public void storeMenu() {
+        System.out.println("============================");
         System.out.println("\n### 매점 페이지입니다. ###");
         sv.showStoreScreen();
         String menuNum = input("- 메뉴 번호 : ");
@@ -290,7 +296,7 @@ public class MovieView {
             System.out.print("구매한 상품명: " + store.getName() + " /");
             System.out.println(" 상품의 가격: " + store.getPrice());
         });
-        System.out.println("=========================================");
+        System.out.println("============================");
     }
 
 

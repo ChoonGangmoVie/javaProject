@@ -9,6 +9,7 @@ public class StoreView {
     public void showStoreScreen() {
         System.out.println("# 1. 매점 이용하기");
         System.out.println("# 2. 매점 이용 종료");
+        System.out.println("============================");
     }
 
     public void store() {
@@ -23,7 +24,7 @@ public class StoreView {
         while (true) {
             int inputNumber = 0;
             try {
-                inputNumber = Integer.parseInt(input("\n====================================\n- 구매하실 메뉴번호를 입력해주세요: "));
+                inputNumber = Integer.parseInt(input("\n============================\n- 구매하실 메뉴번호를 입력해주세요: "));
                 int finalInputNumber = inputNumber;
                 Store selectedStore = StoreRepository.getStoreList().stream()
                         .filter(store -> store.getMenuNumber() == finalInputNumber).collect(Collectors.toList()).get(0);
