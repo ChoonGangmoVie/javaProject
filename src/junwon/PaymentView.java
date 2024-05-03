@@ -65,9 +65,9 @@ public class PaymentView {
         }
         else{
             System.out.println("==============================");
-            System.out.println("# 등록카드정보 #");
-            System.out.printf("# 카드소유주: %s\n", ReservationRepository.getSendMovieUserInfo().getId());
-            System.out.printf("# 카드번호: %s\n", getCreditCard() );
+            System.out.println("### 현재 등록되어있는 카드정보");
+            System.out.printf("# 카드소유주: %s\n", ReservationRepository.getSendMovieUserInfo().getName());
+            System.out.printf("# 카드번호: %s\n", getCreditCard());
         }
     }
 
@@ -109,12 +109,12 @@ public class PaymentView {
                 if(payAnswer.equals("Y") || payAnswer.equals("y")){
                     // 등록된 카드로 결제를 원할때
 
-                    System.out.println("등록 된 카드로 결제가 완료되었습니다.");
-                    System.out.printf("결제 될 카드 금액: %s\n",ReservationRepository.getSendMovieInfo().getFee());
-                    System.out.println("============================");
+                    System.out.println("\n등록 된 카드로 결제가 완료되었습니다.");
+                    System.out.printf("결제 될 카드 금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
+                    System.out.println("==============================");
                     System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
                     System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
-                    System.out.printf("# 영화금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
+                    System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
                     break;
                 }else if(payAnswer.equals("N") || payAnswer.equals("n")) {
 
@@ -299,8 +299,9 @@ public class PaymentView {
         System.out.printf(" (계상계좌로 30분이내로 입금 부탁 드립니다).\n>>%s-%s-%s-%s\n",account,account2,account3,account4);
         System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
         System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
+        System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
         System.out.printf("# 영화금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
-        System.out.println("============================");
+        System.out.println("==============================");
     }
 
 }

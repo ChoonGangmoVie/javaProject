@@ -40,7 +40,17 @@ public class MovieView {
         System.out.println("### 회원 가입 ###");
         String id = input("# 사용할 아이디: ");
         String pw = input("# 사용할 비밀번호: ");
-        String name = input("# 회원의 이름: ");
+
+        String name;
+        while (true) {
+            name = input("# 회원의 이름: ");
+            // 입력된 값이 숫자를 포함하지 않는지 확인
+            if (!name.matches(".*\\d.*")) {
+                break;
+            } else {
+                System.out.println("이름을 정확히 입력해주세요.");
+            }
+        }
 
 
         int age = 0;
@@ -57,12 +67,13 @@ public class MovieView {
         String creditCard = "";
         System.out.println("============================");
         System.out.println("# 결제할 카드를 먼저 등록하시겠습니까?\n (Y/N)");
-        while (true) {
+  while (true) {
 
-            String inputCard = input("#>> ");
+            String inputCard = input(">>(Y/N) ");
             if (inputCard.equalsIgnoreCase("Y") || inputCard.equalsIgnoreCase("y")) {
                 PaymentView.registeredCard();
                 creditCard = PaymentRepository.getCardNum();
+                System.out.println("\n# 카드가 등록되었습니다.");
                 break;
             } else if (inputCard.equalsIgnoreCase("N") || inputCard.equalsIgnoreCase("n")) {
                 creditCard = null;
@@ -266,9 +277,16 @@ public class MovieView {
     private void myMovieInfo() {
 
         Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
-        System.out.println(sendMovieInfo);
         MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
-        System.out.println(sendMovieUserInfo);
+
+        System.out.printf("\n======================================\n### %s님의 영화 예매 내역 ###\n"
+                , sendMovieUserInfo.getName());
+        System.out.printf("# 예약자명: %s\n" , sendMovieUserInfo.getName());
+        System.out.printf("# 영화제목: %s\n" , sendMovieInfo.getMovieName());
+        System.out.printf("# 영화가격: %d\n" , sendMovieInfo.getFee());
+        System.out.printf("# 영화시간: %s\n" , sendMovieInfo.getTime());
+        System.out.printf("# 좌석: %s\n" , sendMovieInfo.getSeats());
+        System.out.println("======================================");
     }
 
     // 나의 매점 구매내역에서 무엇을 샀는지 출력

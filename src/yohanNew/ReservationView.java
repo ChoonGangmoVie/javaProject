@@ -217,7 +217,7 @@ public class ReservationView {
         boolean isFirstTime = true; // 첫 번째 구매 여부를 확인하기 위한 플래그
         do {
             System.out.println("\u001B[34m");
-            seatNumber = input("\n좌석을 입력하세요: ");
+            seatNumber = input("좌석을 입력하세요: ");
             System.out.println("\u001B[0m");
 
             // 입력이 빈 칸인지 확인
