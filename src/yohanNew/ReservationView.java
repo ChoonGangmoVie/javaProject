@@ -8,9 +8,11 @@ import junwon.Payment;
 import junwon.PaymentRepository;
 import junwon.PaymentView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+import static chanhee.MovieView.showMainScreen;
 import static util.SimpleInput.input;
 
 // 프로그램의 입,출력 처리
@@ -34,12 +36,13 @@ public class ReservationView {
         // movie 배열 (영화제목, 금액, 상영시간)
         List<Movie> movies = MovieInfo.getMovie();
 
+        System.out.println(" ");
         System.out.println("\u001B[33m****** 영화 목록 ******");
         System.out.println("\u001B[0m");
         for (int i = 0; i < movies.size(); i++) {
             // movie 배열안에 각각의 movie 객체를 가져온다
             Movie movie = movies.get(i);
-            System.out.printf("# %d. %s\n", i + 1, movie.getMovieName());
+            System.out.printf("🔸  %d. %s         \n", i + 1, movie.getMovieName());
         }
 
         // 1. 영화 선택
@@ -162,7 +165,7 @@ public class ReservationView {
     private static void printMoviesTime(List<String> times) {
         for (int i = 0; i < times.size(); i++) {
             String time = times.get(i);
-            System.out.printf("# %d. %s\n", i + 1, time);
+            System.out.printf("🔸  %d. %s\n", i + 1, time);
         }
     }
 
@@ -279,6 +282,7 @@ public class ReservationView {
                 break;
             }
         } while (true);
+
         viewReservationInfo(); // 추가 구매를 하지 않는 경우에만 호출
 
 
@@ -306,7 +310,17 @@ public class ReservationView {
                     System.out.printf("%s님이 예매하신 영화는 %s이고, 영화 상영 시간은 %s, 좌석은 %s입니다."
                     , r.getMovieUser().getName(), r.getMovie().getMovieName(), movieTime, movieSeats);
 
+                    System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
+                    System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
+                    System.out.printf("# 영화금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
+
+                    System.out.println("기존 저장 저보를 취소합니다.");
+
+
+
                 });
+        showMainScreen();
+
     }
 
 }
