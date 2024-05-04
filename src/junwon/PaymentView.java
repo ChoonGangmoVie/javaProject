@@ -117,6 +117,8 @@ public class PaymentView {
 //                    System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
 //                    System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
 //                    System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
+                    System.out.println(ReservationRepository.getSendMovieInfo());
+                    System.out.println(ReservationRepository.getSendMovieUserInfo());
                     break;
                 }else if(payAnswer.equals("N") || payAnswer.equals("n")) {
 
@@ -129,11 +131,12 @@ public class PaymentView {
                             // 카드 변경 메뉴로 이동
                             System.out.println("카드 변경 메뉴로 이동합니다.");
                             changeCardInfo();
+                            break;
                         }else if(registerCard.equals("N") || registerCard.equals("n")) {
                             // 이전 메뉴로 이동
                             System.out.println("이전 메뉴로 돌아갑니다.");
                             choiceCardOrCash();
-
+                            break;
                         }else{
                             System.out.println("Y 또는 N을 입력해주세요");
                         }
