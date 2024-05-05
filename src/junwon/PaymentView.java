@@ -99,77 +99,58 @@ public class PaymentView {
 
     public static void cardCheck() {
 
-        // 카드가 등록된 상태
-        if (getCreditCard()!=null) {
-            // 등록 카드 결제 여부 확인
-            System.out.println("등록 된 카드로 결제하시겠습니까?");
-            System.out.printf("등록 된 카드번호: " +getCreditCard());
+        while (true) {
+            if (getCreditCard() != null) {
+                System.out.println("등록 된 카드로 결제하시겠습니까?");
+                System.out.printf("등록 된 카드번호: %s\n", getCreditCard());
 
-            String payAnswer="";
-            while (true) {
-                payAnswer= input("\n>>" + "(Y/N)");
-                if(payAnswer.equals("Y") || payAnswer.equals("y")){
-                    // 등록된 카드로 결제를 원할때
-
+                String payAnswer = input("\n>>" + "(Y/N)");
+                if (payAnswer.equalsIgnoreCase("Y")) {
                     System.out.println("\n등록 된 카드로 결제가 완료되었습니다.");
-                    System.out.printf("결제 될 카드 금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
-//                    System.out.println("==============================");
-//                    System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
-//                    System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
-//                    System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
+                    System.out.printf("결제 될 카드 금액: %s원\n", ReservationRepository.getSendMovieInfo().getFee());
                     System.out.println(ReservationRepository.getSendMovieInfo());
                     System.out.println(ReservationRepository.getSendMovieUserInfo());
                     break;
-                }else if(payAnswer.equals("N") || payAnswer.equals("n")) {
-
-                    // 등록된 카드로 결제를 원하지 않을때
+                } else if (payAnswer.equalsIgnoreCase("N")) {
                     System.out.println("등록 된 카드정보를 변경하시겠습니까?");
 
-                    while (true) {
-                        String registerCard = input(">>" + "(Y/N)");
-                        if(registerCard.equals("Y") || registerCard.equals("y")){
-                            // 카드 변경 메뉴로 이동
-                            System.out.println("카드 변경 메뉴로 이동합니다.");
-                            changeCardInfo();
-                            break;
-                        }else if(registerCard.equals("N") || registerCard.equals("n")) {
-                            // 이전 메뉴로 이동
-                            System.out.println("이전 메뉴로 돌아갑니다.");
-                            choiceCardOrCash();
-                            break;
-                        }else{
-                            System.out.println("Y 또는 N을 입력해주세요");
-                        }
+                    String registerCard = input(">>" + "(Y/N)");
+                    if (registerCard.equalsIgnoreCase("Y")) {
+                        System.out.println("카드 변경 메뉴로 이동합니다.");
+                        changeCardInfo();
+                        break;
+                    } else if (registerCard.equalsIgnoreCase("N")) {
+                        System.out.println("이전 메뉴로 돌아갑니다.");
+                        choiceCardOrCash();
+                        break;
+                    } else {
+                        System.out.println("잘못된 입력입니다. 이전 메뉴로 돌아갑니다.");
+                        choiceCardOrCash();
+                        break;
                     }
-                } else{
-                    System.out.println("Y 또는 N을 입력해주세요");
+                } else {
+                    System.out.println("잘못된 입력입니다. 이전 메뉴로 돌아갑니다.");
+                    choiceCardOrCash();
+                    break;
                 }
-            }
+            } else {
+                System.out.println("등록 된 카드가 없습니다. 카드를 등록하시겠습니까?");
 
-            // 카드가 미등록된 상태
-        } else {
-
-            System.out.println("등록 된 카드가 없습니다. 카드를 등록하시겠습니까?");
-
-
-            while (true) {
                 String cardRegisterAnswer = input(">>" + "(Y/N)");
-                if(cardRegisterAnswer.equals("Y")||cardRegisterAnswer.equals("y")){
-
-                    // 카드 등록을 원할때
+                if (cardRegisterAnswer.equalsIgnoreCase("Y")) {
                     System.out.println("카드 등록 메뉴로 이동합니다.");
                     System.out.println("============================");
                     registeredCard();
                     cardCheck();
                     break;
-                }else if(cardRegisterAnswer.equals("N")||cardRegisterAnswer.equals("n")){
-
-                    // 카드 등록을 원하지 않을때
+                } else if (cardRegisterAnswer.equalsIgnoreCase("N")) {
                     System.out.println("카드 등록을 취소하였습니다. 이전 메뉴로 돌아갑니다.");
                     choiceCardOrCash();
-
-                }else{
-                    System.out.println("Y 또는 N을 입력해주세요");
+                    break;
+                } else {
+                    System.out.println("잘못된 입력입니다. 이전 메뉴로 돌아갑니다.");
+                    choiceCardOrCash();
+                    break;
                 }
             }
         }
@@ -285,7 +266,11 @@ public class PaymentView {
             }
         }
 
+
+        //finalInfo(ReservationRepository.getSendMovieUserInfo(),ReservationRepository.getSendMovieInfo());
+
         return changeCardNum( CardNum , Card2Num , Card3Num , Card4Num);
+
 
     }
 

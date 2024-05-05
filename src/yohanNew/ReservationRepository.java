@@ -14,6 +14,14 @@ public class ReservationRepository {
     // 영화 예매정보들을 담을 리스트
     private List<ReservationInfo> reservationInfoList;
 
+    public static void setSendMovieInfo(Movie sendMovieInfo) {
+        ReservationRepository.sendMovieInfo = sendMovieInfo;
+    }
+
+    public static void setSendMovieUserInfo(MovieUser sendMovieUserInfo) {
+        ReservationRepository.sendMovieUserInfo = sendMovieUserInfo;
+    }
+
     // Movie, MovieUser 보낼때 사용하는 변수
     private static Movie sendMovieInfo;
     private static MovieUser sendMovieUserInfo;
@@ -30,7 +38,7 @@ public class ReservationRepository {
         this.reservationInfoList = new ArrayList<>();
     }
 
-    public List<ReservationInfo> getReservationInfoList() {
+    public  List<ReservationInfo> getReservationInfoList() {
         return reservationInfoList;
     }
 
