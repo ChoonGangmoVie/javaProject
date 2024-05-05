@@ -6,6 +6,9 @@ import util.SimpleInput;
 import yohanNew.Movie;
 import yohanNew.ReservationRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ReservationManager {
     private static List<ReservationInfo> reservationList = new ArrayList<>();
 
@@ -51,7 +54,7 @@ public class ReservationManager {
     public static void cancelReservation() {
         Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
         MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
-        reservationList.add(Info);
+
         if (sendMovieInfo != null && sendMovieUserInfo != null) {
             ReservationInfo info = new ReservationInfo(sendMovieInfo, sendMovieUserInfo);
 
