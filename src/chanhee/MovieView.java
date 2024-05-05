@@ -4,6 +4,8 @@ package chanhee;
 import junwon.Payment;
 import junwon.PaymentRepository;
 import junwon.PaymentView;
+import junwon.cancelReservation.ReservationManager;
+import song.Ticketing;
 import yohanNew.Movie;
 import yohanNew.ReservationInfo;
 import yohanNew.ReservationRepository;
@@ -21,7 +23,7 @@ public class MovieView {
     private UserView uv;
     private StoreView sv;
     private UserRepository ur;
-//    private Ticketing tt;
+    private Ticketing tt;
     private static ReservationRepository reservationRepository;
     private ReservationInfo reservationInfo;
 
@@ -147,7 +149,7 @@ public class MovieView {
 
     // 메인페이지 2번 메뉴: 영화 예매 확인 및 취소
     private void ticketingCheck() {
-//        tt.menu();
+        ReservationManager.checkReservation();
     }
 
     // 메인페이지 3번 메뉴: 매점
