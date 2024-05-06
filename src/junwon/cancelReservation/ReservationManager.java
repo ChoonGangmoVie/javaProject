@@ -21,7 +21,7 @@ public class ReservationManager {
             System.out.println("\n### 예매 정보 확인 ###");
             System.out.printf("# 예약자명: %s\n", sendMovieUserInfo.getName());
             System.out.printf("# 영화제목: %s\n", sendMovieInfo.getMovieName());
-            System.out.printf("# 영화가격: %d\n", sendMovieInfo.getFee());
+            System.out.printf("# 영화금액: %s원\n",(ReservationRepository.getSendMovieInfo().getSeats().size())*15000);
             System.out.printf("# 영화시간: %s\n", sendMovieInfo.getTime());
             System.out.printf("# 좌석: %s\n", sendMovieInfo.getSeats());
 
