@@ -49,6 +49,9 @@ public class ReservationRepository {
         ReservationInfo reservationInfo = new ReservationInfo(movieUser, movie);
         reservationInfoList.add(reservationInfo);
 
+
+
+
         Movie movie1 = reservationInfo.getMovie();
         sendMovieInfo = movie1;
         MovieUser movieUser1 = reservationInfo.getMovieUser();
@@ -57,7 +60,7 @@ public class ReservationRepository {
         System.out.println("\n### 예약 정보가 추가되었습니다 ###");
         System.out.printf("# 예약자명: %s\n" , movieUser1.getName());
         System.out.printf("# 영화제목: %s\n" , movie.getMovieName());
-        System.out.printf("# 영화가격: %d\n" , movie.getFee());
+        System.out.printf("# 영화금액: %s원\n",(ReservationRepository.getSendMovieInfo().getSeats().size())*15000);
         System.out.printf("# 영화시간: %s\n" , movie1.getTime());
         System.out.printf("# 좌석: %s\n" , movie1.getSeats());
     }
