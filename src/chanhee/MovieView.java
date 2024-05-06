@@ -277,23 +277,24 @@ public class MovieView {
     // 나의 영화 예매 내역에서 어떤 영화를 예매했는지 출력
     private void myMovieInfo() {
 
-        try {
-            Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
-            MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
+        Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
+        MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
 
-            System.out.printf("\n======================================\n### %s님의 영화 예매 내역 ###\n"
-                    , sendMovieUserInfo.getName());
-            System.out.printf("# 예약자명: %s\n" , sendMovieUserInfo.getName());
-            System.out.printf("# 영화제목: %s\n" , sendMovieInfo.getMovieName());
-            System.out.printf("# 영화가격: %d\n" , sendMovieInfo.getFee());
-            System.out.printf("# 영화시간: %s\n" , sendMovieInfo.getTime());
-            System.out.printf("# 좌석: %s\n" , sendMovieInfo.getSeats());
-            System.out.println("======================================");
-        } catch (NullPointerException e) {
-            System.out.println("# 예매한 영화 내역이 없습니다.");
+        if (sendMovieInfo != null && sendMovieUserInfo != null) {
+            System.out.printf("### %s님의 영화 예매 내역 ###\n", sendMovieUserInfo.getName());
+            List<ReservationInfo> reservationList = ReservationRepository.getReservationInfoList();
+            for (ReservationInfo reservationInfo : reservationList) {
+                System.out.printf("# 예약자명: %s\n", reservationInfo.getMovieUser().getName());
+                System.out.printf("# 영화제목: %s\n", reservationInfo.getMovie().getMovieName());
+                System.out.printf("# 영화금액: %s원\n", (reservationInfo.getMovie().getSeats().size()) * 15000);
+                System.out.printf("# 영화시간: %s\n", reservationInfo.getMovie().getTime());
+                System.out.printf("# 좌석: %s\n", reservationInfo.getMovie().getSeats());
+                System.out.println("===========================");
+            }
+        } else {
+            System.out.println("예매된 정보가 없습니다.");
         }
     }
-
     // 나의 매점 구매내역에서 무엇을 샀는지 출력
     private void myStoreInfo() {
         ur.myStoreList();
