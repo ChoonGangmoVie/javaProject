@@ -290,7 +290,7 @@ public class MovieView {
             System.out.printf("# 좌석: %s\n" , sendMovieInfo.getSeats());
             System.out.println("======================================");
         } catch (NullPointerException e) {
-            System.out.println("예매한 영화 내역이 없습니다.");
+            System.out.println("# 예매한 영화 내역이 없습니다.");
         }
     }
 
