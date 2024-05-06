@@ -34,6 +34,10 @@ public class ReservationView {
 
     public static List<ReservationInfo> reservationList = new ArrayList<>();
 
+    // 이전에 선택한 좌석 정보를 저장할 리스트
+    private static List<String> previousSeats = new ArrayList<>();
+
+
     // 프로그램 실행
     public static void movieReservation() {
         // movie 배열 (영화제목, 금액, 상영시간)
@@ -82,6 +86,7 @@ public class ReservationView {
                     printMoviesTime(times);
                     selectedTime = selectMovieTime(movies.get(0).getTime());
                 }
+
 
                 // 3. 좌석 선택
                 seatChoice(selectedMovieTitle, selectedTime);
@@ -200,20 +205,20 @@ public class ReservationView {
         System.out.println("****** \uD83D\uDC47구매하고 싶은 좌석을 입력하세요.\uD83D\uDC47 ******");
         System.out.println("\u001B[0m");
 
-        // 선택 영화 제목 및 시간 보내기
-        PaymentRepository.getMoveNameTime(selectedMovieTitle,selectedTime);
+        // 선택한 영화, 상영 시간에 해당하는 예약 정보를 가져옴
+        List<String> previousSeats = repository.getReservationInfo(movieUser, selectedMovieTitle, selectedTime);
+
+        // 이전에 선택한 좌석이 있는 경우 출력
+        if (previousSeats != null && !previousSeats.isEmpty()) {
+            System.out.println("이전에 선택한 좌석:");
+            for (String seat : previousSeats) {
+                System.out.print(seat + " ");
+            }
+            System.out.println("\n");
+        }
 
         // 좌석이 저장될 리스트
         List<String> seats = new ArrayList<>();
-
-        // 이전에 예매했던 영화이면 좌석리스트 유지
-//        if (ReservationRepository.getSendMovieInfo() != null && ReservationRepository.getSendMovieUserInfo() != null) {
-//            seats = ReservationRepository.getSendMovieInfo().getSeats();
-//        } else {
-//            seats = new ArrayList<>();
-//        }
-
-
 
         // 5 x 10 좌석 생성
         String[][] seat = new String[5][10];
@@ -221,6 +226,10 @@ public class ReservationView {
         for (int i = 0; i < seat.length; i++) {
             for (int j = 0; j < seat[i].length; j++) {
                 seat[i][j] = eng[i] + (j + 1);
+                // 이미 예매된 좌석인 경우 X로 표시
+                if (repository.isSeatAlreadyReserved(selectedMovieTitle, selectedTime, seat[i][j])) {
+                    seat[i][j] = " X";
+                }
             }
         }
         watchSeatList(seat);
@@ -233,7 +242,7 @@ public class ReservationView {
             System.out.println("\u001B[0m");
 
             // 입력이 빈 칸인지 확인
-            if(seatNumber.trim().isEmpty()) {
+            if (seatNumber.trim().isEmpty()) {
                 System.out.println("\u001B[31m좌석은 꼭 입력해 주셔야 해요.😭");
                 System.out.println("\u001B[0m");
                 watchSeatList(seat);
@@ -251,15 +260,12 @@ public class ReservationView {
                 }
             }
 
-            if(!isValidSeat) {
+            if (!isValidSeat) {
                 System.out.println("\u001B[31m존재하지 않는 좌석입니다! 다시 입력해주세요 😵‍💫 ");
                 System.out.println("\u001B[0m");
                 watchSeatList(seat);
                 continue;
             }
-
-
-
 
             // 구매 완료한 좌석 X로 변경
             for (int i = 0; i < seat.length; i++) {
@@ -271,16 +277,13 @@ public class ReservationView {
             }
             watchSeatList(seat);
 
-
             // 구매한 좌석을 seats에 저장
             seats.add(seatNumber);
-
 
             // 첫번째 구매할 때만 실행하고 종료, 추가 구매에 대한 저장은 while문 안에서 실행
             if (isFirstTime) {
                 repository.addReservationInfo(movieUser, selectedMovieTitle, selectedTime, seats);
                 isFirstTime = false; // 첫 번째 구매 완료 후 플래그 변경
-//                System.out.println("예약 정보가 추가되었습니다: " + repository.getReservationInfoList());
             }
 
             // 추가 구매 여부 확인
@@ -297,7 +300,6 @@ public class ReservationView {
         } while (true);
 
         viewReservationInfo(); // 추가 구매를 하지 않는 경우에만
-
         PaymentView.start();
     }
 
@@ -315,10 +317,10 @@ public class ReservationView {
     public static void viewReservationInfo() {
 
         System.out.println("### 현재 예약 정보 ###");
-        System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
-        System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
-        System.out.printf("# 좌석: %s\n",ReservationRepository.getSendMovieInfo().getSeats());
-        System.out.printf("# 영화금액: %s원\n",(ReservationRepository.getSendMovieInfo().getSeats().size())*15000);
+        System.out.printf("# 영화제목: %s\n", ReservationRepository.getSendMovieInfo().getMovieName());
+        System.out.printf("# 상영시간: %s\n", ReservationRepository.getSendMovieInfo().getTime());
+        System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
+        System.out.printf("# 영화금액: %s원\n", (ReservationRepository.getSendMovieInfo().getSeats().size()) * 15000);
     }
 
 

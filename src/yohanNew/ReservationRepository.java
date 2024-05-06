@@ -6,6 +6,8 @@ import junwon.PaymentRepository;
 
 import java.util.*;
 
+import static yohanNew.ReservationView.movieUser;
+
 // 영화 예매의 정보 여러개를 관리 (조회, 수정, 삭제, 생성, 탐색, 정렬)
 public class ReservationRepository {
 
@@ -69,5 +71,20 @@ public class ReservationRepository {
         return user.getAge() < 19;
     }
 
+    public List<String> getReservationInfo(MovieUser movieUser, String selectedMovieTitle, String selectedTime) {
+        for (ReservationInfo reservationInfo : reservationInfoList) {
+            Movie movie = reservationInfo.getMovie();
+            MovieUser user = reservationInfo.getMovieUser();
+            if (user.equals(movieUser) && movie.getMovieName().equals(selectedMovieTitle) && movie.getTime().contains(selectedTime)) {
+                return movie.getSeats();
+            }
+        }
+        return null; // 해당 정보를 찾지 못한 경우 null 반환
+    }
+
+    public boolean isSeatAlreadyReserved(String selectedMovieTitle, String selectedTime, String seatNumber) {
+        List<String> seats = getReservationInfo(movieUser, selectedMovieTitle, selectedTime);
+        return seats != null && seats.contains(seatNumber);
+    }
 
 }
