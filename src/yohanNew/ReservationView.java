@@ -7,6 +7,7 @@ import chanhee.UserRepository;
 import junwon.Payment;
 import junwon.PaymentRepository;
 import junwon.PaymentView;
+import junwon.cancelReservation.ReservationInfo;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class ReservationView {
 //        movieUser = new MovieUser("rnfaos77", "2386", "김요한", 15, Gender.MALE, null);
         movieUser = userRepository.getCurrentMovieUser();
     }
+
+    private static List<ReservationInfo> reservationList = new ArrayList<>();
 
     // 프로그램 실행
     public static void movieReservation() {
@@ -283,9 +286,14 @@ public class ReservationView {
             }
         } while (true);
 
-        viewReservationInfo(); // 추가 구매를 하지 않는 경우에만 호출
+        viewReservationInfo(); // 추가 구매를 하지 않는 경우에만
 
-
+        // 예약정보를 새로운 리스트에 추가함
+        Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
+        MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
+        ReservationInfo info = new ReservationInfo(sendMovieInfo, sendMovieUserInfo);
+        reservationList.add(info);
+        System.out.println(reservationList);
         PaymentView.start();
     }
 
