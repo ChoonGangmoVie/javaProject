@@ -314,7 +314,7 @@ public class ReservationView {
         System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
         System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
         System.out.printf("# 좌석: %s\n",ReservationRepository.getSendMovieInfo().getSeats());
-        System.out.printf("# 영화금액: %s원",ReservationRepository.getSendMovieInfo().getFee());
+        System.out.printf("# 영화금액: %s원\n",(ReservationRepository.getSendMovieInfo().getSeats().size())*15000);
     }
 
 
