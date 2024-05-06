@@ -32,7 +32,7 @@ public class ReservationView {
         movieUser = userRepository.getCurrentMovieUser();
     }
 
-    private static List<ReservationInfo> reservationList = new ArrayList<>();
+    public static List<ReservationInfo> reservationList = new ArrayList<>();
 
     // 프로그램 실행
     public static void movieReservation() {
@@ -204,7 +204,16 @@ public class ReservationView {
         PaymentRepository.getMoveNameTime(selectedMovieTitle,selectedTime);
 
         // 좌석이 저장될 리스트
-        List<String> seats = movie.getSeats();
+        List<String> seats = new ArrayList<>();
+
+        // 이전에 예매했던 영화이면 좌석리스트 유지
+//        if (ReservationRepository.getSendMovieInfo() != null && ReservationRepository.getSendMovieUserInfo() != null) {
+//            seats = ReservationRepository.getSendMovieInfo().getSeats();
+//        } else {
+//            seats = new ArrayList<>();
+//        }
+
+
 
         // 5 x 10 좌석 생성
         String[][] seat = new String[5][10];
@@ -266,6 +275,7 @@ public class ReservationView {
             // 구매한 좌석을 seats에 저장
             seats.add(seatNumber);
 
+
             // 첫번째 구매할 때만 실행하고 종료, 추가 구매에 대한 저장은 while문 안에서 실행
             if (isFirstTime) {
                 repository.addReservationInfo(movieUser, selectedMovieTitle, selectedTime, seats);
@@ -288,12 +298,6 @@ public class ReservationView {
 
         viewReservationInfo(); // 추가 구매를 하지 않는 경우에만
 
-        // 예약정보를 새로운 리스트에 추가함
-        Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
-        MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
-        ReservationInfo info = new ReservationInfo(sendMovieInfo, sendMovieUserInfo);
-        reservationList.add(info);
-        System.out.println(reservationList);
         PaymentView.start();
     }
 

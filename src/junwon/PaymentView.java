@@ -287,11 +287,11 @@ public class PaymentView {
         double random=Math.random();
         int num = (int)Math.round(random * (bank.length-1));
         System.out.printf("@"+bank[num]+"은행@");
-        System.out.printf(" (계상계좌로 30분이내로 입금 부탁 드립니다).\n>>%s-%s-%s-%s\n",account,account2,account3,account4);
+        System.out.printf(" (가상계좌로 30분이내로 입금 부탁 드립니다).\n>>%s-%s-%s-%s\n",account,account2,account3,account4);
         System.out.printf("# 영화제목: %s\n",ReservationRepository.getSendMovieInfo().getMovieName());
         System.out.printf("# 상영시간: %s\n",ReservationRepository.getSendMovieInfo().getTime());
         System.out.printf("# 좌석: %s\n", ReservationRepository.getSendMovieInfo().getSeats());
-        System.out.printf("# 영화금액: %s원\n",(ReservationRepository.getSendMovieInfo().getSeats().size())*15000);
+        System.out.printf("# 영화금액: %s원\n",ReservationRepository.getSendMovieInfo().getFee());
         System.out.println("==============================");
     }
 

@@ -12,7 +12,7 @@ public class ReservationRepository {
     private static UserRepository userRepository;
 
     // 영화 예매정보들을 담을 리스트
-    private List<ReservationInfo> reservationInfoList;
+    private static List<ReservationInfo> reservationInfoList;
 
     public static void setSendMovieInfo(Movie sendMovieInfo) {
         ReservationRepository.sendMovieInfo = sendMovieInfo;
@@ -38,7 +38,7 @@ public class ReservationRepository {
         this.reservationInfoList = new ArrayList<>();
     }
 
-    public  List<ReservationInfo> getReservationInfoList() {
+    public static List<ReservationInfo> getReservationInfoList() {
         return reservationInfoList;
     }
 
