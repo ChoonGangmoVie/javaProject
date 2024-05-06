@@ -4,12 +4,13 @@ import chanhee.MovieUser;
 import chanhee.MovieView;
 import util.SimpleInput;
 import yohanNew.Movie;
+import yohanNew.ReservationInfo;
 import yohanNew.ReservationRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationManager {
+
 
 
     // 예매 정보를 확인하는 메서드
@@ -17,13 +18,18 @@ public class ReservationManager {
         Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
         MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
 
+
         if (sendMovieInfo != null && sendMovieUserInfo != null) {
-            System.out.println("\n### 예매 정보 확인 ###");
-            System.out.printf("# 예약자명: %s\n", sendMovieUserInfo.getName());
-            System.out.printf("# 영화제목: %s\n", sendMovieInfo.getMovieName());
-            System.out.printf("# 영화금액: %s원\n",(ReservationRepository.getSendMovieInfo().getSeats().size())*15000);
-            System.out.printf("# 영화시간: %s\n", sendMovieInfo.getTime());
-            System.out.printf("# 좌석: %s\n", sendMovieInfo.getSeats());
+            System.out.println("### 현재 예약 정보 ###");
+            List<ReservationInfo> reservationList = ReservationRepository.getReservationInfoList();
+            for (ReservationInfo reservationInfo : reservationList) {
+                System.out.printf("# 예약자명: %s\n", reservationInfo.getMovieUser().getName());
+                System.out.printf("# 영화제목: %s\n", reservationInfo.getMovie().getMovieName());
+                System.out.printf("# 영화금액: %s원\n", (reservationInfo.getMovie().getSeats().size()) * 15000);
+                System.out.printf("# 영화시간: %s\n", reservationInfo.getMovie().getTime());
+                System.out.printf("# 좌석: %s\n", reservationInfo.getMovie().getSeats());
+                System.out.println("===========================");
+            }
 
             System.out.println("============================");
             System.out.println("1. 예약취소");
@@ -52,21 +58,26 @@ public class ReservationManager {
 
     // 예매 정보를 취소하는 메서드
     public static void cancelReservation() {
-        Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
-        MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
 
-        if (sendMovieInfo != null && sendMovieUserInfo != null) {
+        List<ReservationInfo> reservationList = ReservationRepository.getReservationInfoList();
+        if (!reservationList.isEmpty()) {
+            System.out.println("### 예약 정보 취소 ###");
+            System.out.println("취소할 예약 정보를 선택해주세요:");
+            for (int i = 0; i < reservationList.size(); i++) {
+                ReservationInfo reservation = reservationList.get(i);
+                System.out.printf("%d. %s - %s\n", i + 1, reservation.getMovie().getMovieName(), reservation.getMovie().getTime());
+            }
 
+            System.out.print("취소할 예약 번호를 입력하세요: ");
+            int cancelNum = Integer.parseInt(SimpleInput.input(">>"));
 
-            System.out.println("\n### 예매가 취소되었습니다 ###");
-            System.out.printf("# 예약자명: %s\n", sendMovieUserInfo.getName());
-            System.out.printf("# 영화제목: %s\n", sendMovieInfo.getMovieName());
-            System.out.printf("# 영화시간: %s\n", sendMovieInfo.getTime());
-            System.out.printf("# 좌석: %s\n", sendMovieInfo.getSeats());
-
-            // 취소 후에는 해당 정보 초기화
-            ReservationRepository.setSendMovieInfo(null);
-            ReservationRepository.setSendMovieUserInfo(null);
+            if (cancelNum >= 1 && cancelNum <= reservationList.size()) {
+                ReservationInfo canceledReservation = reservationList.remove(cancelNum - 1);
+                System.out.println("예약이 취소되었습니다:");
+                System.out.printf("영화: %s, 시간: %s\n", canceledReservation.getMovie().getMovieName(), canceledReservation.getMovie().getTime());
+            } else {
+                System.out.println("올바르지 않은 선택입니다.");
+            }
 
 
         } else {
