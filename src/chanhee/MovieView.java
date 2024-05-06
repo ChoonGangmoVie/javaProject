@@ -277,17 +277,21 @@ public class MovieView {
     // 나의 영화 예매 내역에서 어떤 영화를 예매했는지 출력
     private void myMovieInfo() {
 
-        Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
-        MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
+        try {
+            Movie sendMovieInfo = ReservationRepository.getSendMovieInfo();
+            MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
 
-        System.out.printf("\n======================================\n### %s님의 영화 예매 내역 ###\n"
-                , sendMovieUserInfo.getName());
-        System.out.printf("# 예약자명: %s\n" , sendMovieUserInfo.getName());
-        System.out.printf("# 영화제목: %s\n" , sendMovieInfo.getMovieName());
-        System.out.printf("# 영화가격: %d\n" , sendMovieInfo.getFee());
-        System.out.printf("# 영화시간: %s\n" , sendMovieInfo.getTime());
-        System.out.printf("# 좌석: %s\n" , sendMovieInfo.getSeats());
-        System.out.println("======================================");
+            System.out.printf("\n======================================\n### %s님의 영화 예매 내역 ###\n"
+                    , sendMovieUserInfo.getName());
+            System.out.printf("# 예약자명: %s\n" , sendMovieUserInfo.getName());
+            System.out.printf("# 영화제목: %s\n" , sendMovieInfo.getMovieName());
+            System.out.printf("# 영화가격: %d\n" , sendMovieInfo.getFee());
+            System.out.printf("# 영화시간: %s\n" , sendMovieInfo.getTime());
+            System.out.printf("# 좌석: %s\n" , sendMovieInfo.getSeats());
+            System.out.println("======================================");
+        } catch (NullPointerException e) {
+            System.out.println("예매한 영화 내역이 없습니다.");
+        }
     }
 
     // 나의 매점 구매내역에서 무엇을 샀는지 출력
