@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationManager {
-    private static List<ReservationInfo> reservationList = new ArrayList<>();
+
 
     // 예매 정보를 확인하는 메서드
     public static void checkReservation() {
@@ -56,7 +56,7 @@ public class ReservationManager {
         MovieUser sendMovieUserInfo = ReservationRepository.getSendMovieUserInfo();
 
         if (sendMovieInfo != null && sendMovieUserInfo != null) {
-            ReservationInfo info = new ReservationInfo(sendMovieInfo, sendMovieUserInfo);
+
 
             System.out.println("\n### 예매가 취소되었습니다 ###");
             System.out.printf("# 예약자명: %s\n", sendMovieUserInfo.getName());
@@ -67,7 +67,7 @@ public class ReservationManager {
             // 취소 후에는 해당 정보 초기화
             ReservationRepository.setSendMovieInfo(null);
             ReservationRepository.setSendMovieUserInfo(null);
-            System.out.println(info);
+
 
         } else {
             System.out.println("예매된 정보가 없어 취소할 수 없습니다.");
