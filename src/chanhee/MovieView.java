@@ -135,7 +135,7 @@ public class MovieView {
                     break;
                 case "5":
                     System.out.println("# 프로그램을 종료합니다.");
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("# 옳바른 메뉴 번호를 입력하세요!");
             }
