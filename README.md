@@ -1,5 +1,5 @@
-# 팀 명 : 블라블라
-## 프로젝트명 : ChoonGangmoVie
+# 팀 명 : ChoonGangmoVie
+## 프로젝트명 : 영화 예매 프로그램
 
 
 ## 프로젝트 정보
