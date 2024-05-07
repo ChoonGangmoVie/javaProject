@@ -14,6 +14,7 @@ import yohanNew.ReservationView;
 import java.util.List;
 
 import static junwon.PaymentRepository.getCardNum;
+import static junwon.mainMenu.MainView.showMainView;
 import static util.SimpleInput.*;
 
 import static yohanNew.ReservationView.movieReservation;
@@ -202,7 +203,7 @@ public class MovieView {
                     break;
                 case "4":
                     uv.deleteUser();
-                    makeNewUser();
+                    showMainView();
                 case "5":
                     return;
                 default:

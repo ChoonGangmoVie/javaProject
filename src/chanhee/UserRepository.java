@@ -105,7 +105,7 @@ public class UserRepository {
                 // 삭제 진행
                 String inputPw = input("# 기존 비밀번호 입력: ");
                 if (inputPw.equals(currentMovieUser.getPassword())) {
-                    System.out.printf("# %s님의 회원정보가 삭제되었습니다. 회원가입 화면으로 돌아갑니다.", currentMovieUser.getName());
+                    System.out.printf("# %s님의 회원정보가 삭제되었습니다. 메인화면으로 돌아갑니다.\n", currentMovieUser.getName());
                     currentMovieUser = null;
                     break;
                 } else {
