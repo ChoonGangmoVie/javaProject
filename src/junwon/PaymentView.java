@@ -108,8 +108,6 @@ public class PaymentView {
                 if (payAnswer.equalsIgnoreCase("Y")) {
                     System.out.println("\n등록 된 카드로 결제가 완료되었습니다.");
                     System.out.printf("결제 될 카드 금액: %s원\n", ReservationRepository.getSendMovieInfo().getFee());
-                    System.out.println(ReservationRepository.getSendMovieInfo());
-                    System.out.println(ReservationRepository.getSendMovieUserInfo());
                     break;
                 } else if (payAnswer.equalsIgnoreCase("N")) {
                     System.out.println("등록 된 카드정보를 변경하시겠습니까?");
